@@ -307,10 +307,19 @@ select {
 }
 
 .stat-strip strong {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   color: var(--ink-strong);
   font-size: 1.3rem;
   font-weight: 800;
+}
+
+.stat-strip strong span {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 1.1rem;
+  line-height: 1;
 }
 
 .stat-strip span {
@@ -1669,6 +1678,25 @@ select {
     padding: 1rem;
   }
 
+  .preview-header {
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .preview-header p {
+    font-size: 0.72rem;
+  }
+
+  .preview-header h2 {
+    margin-top: 0.15rem;
+    font-size: 1.45rem;
+  }
+
+  .status-pill {
+    padding: 0.38rem 0.7rem;
+    font-size: 0.72rem;
+  }
+
   .preview-zoom {
     display: none;
   }
@@ -1678,6 +1706,7 @@ select {
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 0.3rem;
+    scroll-snap-type: x proximity;
     scrollbar-width: thin;
   }
 
@@ -1687,13 +1716,118 @@ select {
   }
 
   .portfolio-preview {
-    min-width: 60rem;
+    gap: 0.75rem;
+    min-width: max-content;
+  }
+
+  .portfolio-toolbar {
+    gap: 0.65rem;
+  }
+
+  .portfolio-tabs {
+    gap: 0.35rem;
+    padding: 0.25rem;
+    border-radius: 14px;
+  }
+
+  .portfolio-tabs span {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.68rem;
+  }
+
+  .portfolio-search {
+    min-width: 8rem;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.7rem;
+  }
+
+  .portfolio-pipeline {
+    gap: 0.45rem;
+  }
+
+  .portfolio-pipeline span {
+    font-size: 0.7rem;
+  }
+
+  .portfolio-columns {
+    display: flex;
+    width: max-content;
+    gap: 0.65rem;
+  }
+
+  .portfolio-column {
+    width: 10.75rem;
+    padding: 0.7rem;
+    border-radius: 18px;
+    scroll-snap-align: start;
+  }
+
+  .portfolio-column-header {
+    gap: 0.45rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .portfolio-column-header strong {
+    font-size: 0.78rem;
+    line-height: 1.25;
+  }
+
+  .portfolio-column-header span {
+    min-width: 1.55rem;
+    height: 1.55rem;
+    font-size: 0.68rem;
+  }
+
+  .property-image {
+    min-height: 4.7rem;
+  }
+
+  .property-card-body {
+    padding: 0.7rem;
+  }
+
+  .property-card-body h3 {
+    font-size: 0.8rem;
+  }
+
+  .property-card-body p,
+  .property-meta span {
+    font-size: 0.66rem;
+  }
+
+  .property-meta {
+    gap: 0.3rem;
+    margin-top: 0.55rem;
+  }
+
+  .property-meta span {
+    padding: 0.28rem 0.45rem;
+  }
+
+  .portfolio-empty-card {
+    min-height: 8.8rem;
+    gap: 0.5rem;
+    padding: 0.8rem;
+  }
+
+  .portfolio-empty-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .portfolio-empty-card p {
+    font-size: 0.72rem;
+  }
+
+  .portfolio-empty-card button {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.72rem;
   }
 }
 
 @media (max-width: 560px) {
   .section {
-    padding: 3.8rem 0;
+    padding: 3.2rem 0;
   }
 
   .site-header,
@@ -1709,6 +1843,15 @@ select {
   .hero {
     gap: 1.2rem;
     padding-top: 3rem;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .button {
+    width: 100%;
   }
 
   .brand-copy small {
@@ -1731,6 +1874,23 @@ select {
   .section-heading p {
     font-size: 0.95rem;
     line-height: 1.6;
+  }
+
+  .trust-tags {
+    gap: 0.5rem;
+  }
+
+  .trust-tags span {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.76rem;
+  }
+
+  .stat-strip strong {
+    font-size: 1.08rem;
+  }
+
+  .stat-strip span {
+    font-size: 0.84rem;
   }
 
   .stat-strip article,
@@ -1757,7 +1917,25 @@ select {
     border-radius: 24px;
   }
 
+  .portfolio-toolbar {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .portfolio-search {
+    min-width: 0;
+    width: 100%;
+  }
+
   .portfolio-preview {
-    min-width: 54rem;
+    gap: 0.65rem;
+  }
+
+  .portfolio-column {
+    width: 9.5rem;
+  }
+
+  .portfolio-empty-card {
+    min-height: 7.8rem;
   }
 }
