@@ -1098,8 +1098,7 @@ select {
   margin-top: 2.1rem;
 }
 
-.ai-journey-step,
-.ai-journey-arrow {
+.ai-journey-step {
   padding: 0.95rem 1rem;
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.75);
@@ -1132,10 +1131,14 @@ select {
 }
 
 .ai-journey-arrow {
+  padding: 0;
   color: var(--accent-deep);
   font-size: 1.25rem;
   font-weight: 800;
   text-align: center;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .platform-grid {
