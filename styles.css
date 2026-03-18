@@ -1604,7 +1604,24 @@ select {
   }
 
   .hero {
+    gap: 1.5rem;
     padding-top: 3.75rem;
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .hero-lede,
+  .hero-actions,
+  .hero-context,
+  .stat-strip {
+    margin-top: 0;
+  }
+
+  .hero-context {
+    padding: 1rem;
   }
 
   .stat-strip,
@@ -1647,11 +1664,36 @@ select {
   .preview-controls {
     justify-content: flex-start;
   }
+
+  .preview-window {
+    padding: 1rem;
+  }
+
+  .preview-zoom {
+    display: none;
+  }
+
+  .portfolio-scale-shell {
+    margin-top: 0.85rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.3rem;
+    scrollbar-width: thin;
+  }
+
+  .portfolio-scale-target {
+    width: max-content;
+    transform: none;
+  }
+
+  .portfolio-preview {
+    min-width: 60rem;
+  }
 }
 
 @media (max-width: 560px) {
   .section {
-    padding: 4.6rem 0;
+    padding: 3.8rem 0;
   }
 
   .site-header,
@@ -1662,6 +1704,11 @@ select {
 
   .site-header {
     gap: 0.8rem;
+  }
+
+  .hero {
+    gap: 1.2rem;
+    padding-top: 3rem;
   }
 
   .brand-copy small {
@@ -1677,6 +1724,13 @@ select {
 
   .preview-header h2 {
     font-size: 1.55rem;
+  }
+
+  .hero-context p,
+  .hero-lede,
+  .section-heading p {
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
   .stat-strip article,
@@ -1696,5 +1750,14 @@ select {
   .camera-notes article {
     grid-template-columns: 1fr;
     gap: 0.45rem;
+  }
+
+  .preview-window {
+    padding: 0.9rem;
+    border-radius: 24px;
+  }
+
+  .portfolio-preview {
+    min-width: 54rem;
   }
 }

@@ -5,6 +5,7 @@ const revealItems = document.querySelectorAll(".reveal");
 const portfolioShell = document.querySelector("[data-portfolio-shell]");
 const portfolioTarget = document.querySelector("[data-portfolio-target]");
 const zoomButtons = document.querySelectorAll("[data-zoom]");
+const compactPortfolioMedia = window.matchMedia("(max-width: 820px)");
 
 if (yearNode) {
   yearNode.textContent = new Date().getFullYear();
@@ -50,6 +51,15 @@ if (portfolioShell && portfolioTarget && zoomButtons.length) {
   const step = 0.06;
 
   const syncPortfolioScale = () => {
+    if (compactPortfolioMedia.matches) {
+      portfolioShell.style.setProperty("--portfolio-scale", "1");
+      portfolioShell.style.height = "auto";
+      zoomButtons.forEach((button) => {
+        button.disabled = true;
+      });
+      return;
+    }
+
     portfolioShell.style.setProperty("--portfolio-scale", String(scale));
     portfolioShell.style.height = `${portfolioTarget.offsetHeight * scale}px`;
 
@@ -76,5 +86,6 @@ if (portfolioShell && portfolioTarget && zoomButtons.length) {
   });
 
   window.addEventListener("resize", syncPortfolioScale);
+  compactPortfolioMedia.addEventListener("change", syncPortfolioScale);
   syncPortfolioScale();
 }
