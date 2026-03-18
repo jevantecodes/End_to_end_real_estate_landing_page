@@ -210,6 +210,11 @@ select {
   align-items: center;
 }
 
+.portfolio-board-section .hero-visual {
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
 .eyebrow {
   margin: 0 0 1rem;
   color: var(--accent);
