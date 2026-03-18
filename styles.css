@@ -659,7 +659,6 @@ select {
 }
 
 .problem-list-row {
-  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 0.4rem 0.75rem;
@@ -680,84 +679,6 @@ select {
   font-size: 0.92rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-}
-
-.problem-list-row em {
-  grid-column: 1 / -1;
-  justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  min-height: 2rem;
-  padding: 0.35rem 0.8rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #cb2f00, #ffa320);
-  color: white;
-  font-size: 0.8rem;
-  font-style: normal;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-}
-
-.problem-row-action {
-  grid-column: 1 / -1;
-  justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  min-height: 2rem;
-  padding: 0.35rem 0.8rem;
-  border: 0;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #cb2f00, #ffa320);
-  color: white;
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  cursor: pointer;
-  transition:
-    opacity 220ms ease,
-    transform 220ms ease,
-    box-shadow 220ms ease;
-  box-shadow: 0 10px 18px rgba(203, 47, 0, 0.16);
-}
-
-.problem-row-action:hover,
-.problem-row-action:focus-visible {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 22px rgba(203, 47, 0, 0.22);
-}
-
-.problem-row-result {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transform: translateY(-4px);
-  pointer-events: none;
-  transition:
-    opacity 260ms ease,
-    transform 260ms ease,
-    max-height 260ms ease,
-    margin-top 260ms ease,
-    padding 260ms ease;
-  margin-top: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.problem-list-row.is-revealed .problem-row-action {
-  opacity: 0;
-  transform: translateY(-4px);
-  pointer-events: none;
-  position: absolute;
-}
-
-.problem-list-row.is-revealed .problem-row-result {
-  opacity: 1;
-  max-height: 3rem;
-  transform: translateY(0);
-  pointer-events: auto;
-  margin-top: 0.15rem;
-  padding-top: 0.35rem;
-  padding-bottom: 0.35rem;
 }
 
 .problem-image-solution {
