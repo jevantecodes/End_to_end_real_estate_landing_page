@@ -897,6 +897,7 @@ select {
   color: var(--ink);
   font-size: 0.8rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .stat-bubble {
@@ -910,6 +911,7 @@ select {
   font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .stat-strip strong em {
