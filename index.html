@@ -91,6 +91,19 @@
             <a class="button button-secondary" href="#contact">See next step</a>
           </div>
 
+          <div class="hero-context">
+            <p>
+              Built for investors and general contractors who need one organized source
+              of truth across property analysis, renovation planning, and transaction milestones.
+            </p>
+            <div class="trust-tags">
+              <span>AI property analysis</span>
+              <span>Room-by-room breakdowns</span>
+              <span>Contractor pricing visibility</span>
+              <span>Inspection and appraisal tracking</span>
+            </div>
+          </div>
+
           <div class="stat-strip">
             <article>
               <strong>AI Analysis</strong>
@@ -114,124 +127,121 @@
                 <p>Portfolio</p>
                 <h2>Master Portfolio</h2>
               </div>
-              <span class="status-pill">Kanban view</span>
+              <div class="preview-controls">
+                <span class="status-pill">Kanban view</span>
+                <div class="preview-zoom" aria-label="Portfolio preview zoom controls">
+                  <button type="button" data-zoom="out" aria-label="Shrink portfolio preview">−</button>
+                  <button type="button" data-zoom="in" aria-label="Enlarge portfolio preview">+</button>
+                </div>
+              </div>
             </div>
 
-            <div class="portfolio-preview">
-              <div class="portfolio-toolbar">
-                <div class="portfolio-tabs">
-                  <span>List</span>
-                  <span class="is-active">Kanban</span>
-                  <span>Map</span>
+            <div class="portfolio-scale-shell" data-portfolio-shell>
+              <div class="portfolio-scale-target" data-portfolio-target>
+                <div class="portfolio-preview">
+                  <div class="portfolio-toolbar">
+                    <div class="portfolio-tabs">
+                      <span>List</span>
+                      <span class="is-active">Kanban</span>
+                      <span>Map</span>
+                    </div>
+                    <div class="portfolio-search">Search addresses...</div>
+                  </div>
+
+                  <div class="portfolio-pipeline">
+                    <span>6 properties in pipeline</span>
+                    <div class="portfolio-pipeline-bar">
+                      <i class="segment-underwriting"></i>
+                      <i class="segment-escrow"></i>
+                      <i class="segment-precon"></i>
+                      <i class="segment-active"></i>
+                      <i class="segment-listed"></i>
+                    </div>
+                  </div>
+
+                  <div class="portfolio-columns">
+                    <article class="portfolio-column">
+                      <div class="portfolio-column-header">
+                        <strong>Leads / Underwriting</strong>
+                        <span>2</span>
+                      </div>
+                      <div class="portfolio-property-card">
+                        <div class="property-image property-image-entry"></div>
+                        <div class="property-card-body">
+                          <h3>1022 Howell Mill Road</h3>
+                          <p>Atlanta, GA 30330</p>
+                          <div class="property-meta">
+                            <span>Under Review</span>
+                            <span>Budget: $20,000</span>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="portfolio-column">
+                      <div class="portfolio-column-header">
+                        <strong>Under Contract / Escrow</strong>
+                        <span>0</span>
+                      </div>
+                      <div class="portfolio-empty-card">
+                        <div class="portfolio-empty-icon"></div>
+                        <p>No active escrows</p>
+                        <button type="button">+ Add</button>
+                      </div>
+                    </article>
+
+                    <article class="portfolio-column">
+                      <div class="portfolio-column-header">
+                        <strong>Pre-Construction</strong>
+                        <span>2</span>
+                      </div>
+                      <div class="portfolio-property-card">
+                        <div class="property-image property-image-precon"></div>
+                        <div class="property-card-body">
+                          <h3>842 Decatur St</h3>
+                          <p>Decatur, GA 30030</p>
+                          <div class="property-meta">
+                            <span>Bidding Active</span>
+                            <span>Budget: $118,000</span>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="portfolio-column">
+                      <div class="portfolio-column-header">
+                        <strong>Active Construction</strong>
+                        <span>2</span>
+                      </div>
+                      <div class="portfolio-property-card">
+                        <div class="property-image property-image-active"></div>
+                        <div class="property-card-body">
+                          <h3>1679 Oak Ln</h3>
+                          <p>Atlanta, GA 30316</p>
+                          <div class="property-meta">
+                            <span>On Schedule</span>
+                            <span>Spend: 57%</span>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="portfolio-column">
+                      <div class="portfolio-column-header">
+                        <strong>Listed / Sold</strong>
+                        <span>0</span>
+                      </div>
+                      <div class="portfolio-empty-card">
+                        <div class="portfolio-empty-icon"></div>
+                        <p>No active properties</p>
+                        <button type="button">+ Add</button>
+                      </div>
+                    </article>
+                  </div>
                 </div>
-                <div class="portfolio-search">Search addresses...</div>
-              </div>
-
-              <div class="portfolio-pipeline">
-                <span>6 properties in pipeline</span>
-                <div class="portfolio-pipeline-bar">
-                  <i class="segment-underwriting"></i>
-                  <i class="segment-escrow"></i>
-                  <i class="segment-precon"></i>
-                  <i class="segment-active"></i>
-                  <i class="segment-listed"></i>
-                </div>
-              </div>
-
-              <div class="portfolio-columns">
-                <article class="portfolio-column">
-                  <div class="portfolio-column-header">
-                    <strong>Leads / Underwriting</strong>
-                    <span>2</span>
-                  </div>
-                  <div class="portfolio-property-card">
-                    <div class="property-image property-image-entry"></div>
-                    <div class="property-card-body">
-                      <h3>1022 Howell Mill Road</h3>
-                      <p>Atlanta, GA 30330</p>
-                      <div class="property-meta">
-                        <span>Under Review</span>
-                        <span>Budget: $20,000</span>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-
-                <article class="portfolio-column">
-                  <div class="portfolio-column-header">
-                    <strong>Under Contract / Escrow</strong>
-                    <span>0</span>
-                  </div>
-                  <div class="portfolio-empty-card">
-                    <div class="portfolio-empty-icon"></div>
-                    <p>No active escrows</p>
-                    <button type="button">+ Add</button>
-                  </div>
-                </article>
-
-                <article class="portfolio-column">
-                  <div class="portfolio-column-header">
-                    <strong>Pre-Construction</strong>
-                    <span>2</span>
-                  </div>
-                  <div class="portfolio-property-card">
-                    <div class="property-image property-image-precon"></div>
-                    <div class="property-card-body">
-                      <h3>842 Decatur St</h3>
-                      <p>Decatur, GA 30030</p>
-                      <div class="property-meta">
-                        <span>Bidding Active</span>
-                        <span>Budget: $118,000</span>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-
-                <article class="portfolio-column">
-                  <div class="portfolio-column-header">
-                    <strong>Active Construction</strong>
-                    <span>2</span>
-                  </div>
-                  <div class="portfolio-property-card">
-                    <div class="property-image property-image-active"></div>
-                    <div class="property-card-body">
-                      <h3>1679 Oak Ln</h3>
-                      <p>Atlanta, GA 30316</p>
-                      <div class="property-meta">
-                        <span>On Schedule</span>
-                        <span>Spend: 57%</span>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-
-                <article class="portfolio-column">
-                  <div class="portfolio-column-header">
-                    <strong>Listed / Sold</strong>
-                    <span>0</span>
-                  </div>
-                  <div class="portfolio-empty-card">
-                    <div class="portfolio-empty-icon"></div>
-                    <p>No active properties</p>
-                    <button type="button">+ Add</button>
-                  </div>
-                </article>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="trust-banner section reveal">
-        <p>
-          Built for investors and general contractors who need one organized source
-          of truth across property analysis, renovation planning, and transaction milestones.
-        </p>
-        <div class="trust-tags">
-          <span>AI property analysis</span>
-          <span>Room-by-room breakdowns</span>
-          <span>Contractor pricing visibility</span>
-          <span>Inspection and appraisal tracking</span>
         </div>
       </section>
 
