@@ -914,13 +914,6 @@ select {
   white-space: nowrap;
 }
 
-.stat-strip strong em {
-  color: var(--accent);
-  font-size: 1.05rem;
-  font-style: normal;
-  line-height: 1;
-}
-
 .section-heading {
   max-width: 44rem;
 }
