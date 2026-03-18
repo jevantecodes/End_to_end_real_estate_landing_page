@@ -136,117 +136,86 @@
                 <p>Portfolio</p>
                 <h2>Master Portfolio</h2>
               </div>
-              <div class="preview-controls">
-                <span class="status-pill">Kanban view</span>
-                <div class="preview-zoom" aria-label="Portfolio preview zoom controls">
-                  <button type="button" data-zoom="out" aria-label="Shrink portfolio preview">−</button>
-                  <button type="button" data-zoom="in" aria-label="Enlarge portfolio preview">+</button>
-                </div>
-              </div>
+              <span class="status-pill">Portfolio snapshot</span>
             </div>
 
-            <div class="portfolio-scale-shell" data-portfolio-shell>
-              <div class="portfolio-scale-target" data-portfolio-target>
-                <div class="portfolio-preview">
-                  <div class="portfolio-toolbar">
-                    <div class="portfolio-tabs">
-                      <span>List</span>
-                      <span class="is-active">Kanban</span>
-                      <span>Map</span>
+            <div class="portfolio-snapshot">
+              <div class="snapshot-topbar">
+                <div class="snapshot-tabs">
+                  <span class="is-active">Portfolio</span>
+                  <span>Pipeline</span>
+                  <span>Renovation</span>
+                </div>
+                <span class="snapshot-count">6 properties</span>
+              </div>
+
+              <div class="snapshot-stage-row">
+                <span>Underwriting 2</span>
+                <span>Escrow 0</span>
+                <span>Pre-Construction 2</span>
+                <span>Active Construction 2</span>
+                <span>Listed / Sold 0</span>
+              </div>
+
+              <div class="snapshot-focus">
+                <article class="snapshot-main-card">
+                  <div class="snapshot-main-head">
+                    <div>
+                      <p>Featured property</p>
+                      <h3>842 Decatur St</h3>
                     </div>
-                    <div class="portfolio-search">Search addresses...</div>
+                    <span class="snapshot-badge">Bidding Active</span>
                   </div>
 
-                  <div class="portfolio-pipeline">
-                    <span>6 properties in pipeline</span>
-                    <div class="portfolio-pipeline-bar">
-                      <i class="segment-underwriting"></i>
-                      <i class="segment-escrow"></i>
-                      <i class="segment-precon"></i>
-                      <i class="segment-active"></i>
-                      <i class="segment-listed"></i>
+                  <div class="snapshot-metrics">
+                    <article>
+                      <strong>$118,000</strong>
+                      <span>Budget</span>
+                    </article>
+                    <article>
+                      <strong>57%</strong>
+                      <span>Spend tracked</span>
+                    </article>
+                    <article>
+                      <strong>4</strong>
+                      <span>Bids in review</span>
+                    </article>
+                  </div>
+
+                  <div class="snapshot-lines">
+                    <div>
+                      <span>Inspection</span>
+                      <strong>Reviewed</strong>
+                    </div>
+                    <div>
+                      <span>AI cost model</span>
+                      <strong>Updated today</strong>
+                    </div>
+                    <div>
+                      <span>Next milestone</span>
+                      <strong>Contractor award</strong>
                     </div>
                   </div>
+                </article>
 
-                  <div class="portfolio-columns">
-                    <article class="portfolio-column">
-                      <div class="portfolio-column-header">
-                        <strong>Leads / Underwriting</strong>
-                        <span>2</span>
-                      </div>
-                      <div class="portfolio-property-card">
-                        <div class="property-image property-image-entry"></div>
-                        <div class="property-card-body">
-                          <h3>1022 Howell Mill Road</h3>
-                          <p>Atlanta, GA 30330</p>
-                          <div class="property-meta">
-                            <span>Under Review</span>
-                            <span>Budget: $20,000</span>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
+                <div class="snapshot-side-cards">
+                  <article class="snapshot-mini-card">
+                    <span class="mini-chip">Room Design</span>
+                    <strong>Kitchen and bath scope mapped</strong>
+                    <p>Measurements, floor plans, finish notes, and room details stay in one record.</p>
+                  </article>
 
-                    <article class="portfolio-column">
-                      <div class="portfolio-column-header">
-                        <strong>Under Contract / Escrow</strong>
-                        <span>0</span>
-                      </div>
-                      <div class="portfolio-empty-card">
-                        <div class="portfolio-empty-icon"></div>
-                        <p>No active escrows</p>
-                        <button type="button">+ Add</button>
-                      </div>
-                    </article>
+                  <article class="snapshot-mini-card">
+                    <span class="mini-chip">AI Analysis</span>
+                    <strong>Cost ranges update by room</strong>
+                    <p>Material assumptions, inspection findings, and pricing scenarios stay connected.</p>
+                  </article>
 
-                    <article class="portfolio-column">
-                      <div class="portfolio-column-header">
-                        <strong>Pre-Construction</strong>
-                        <span>2</span>
-                      </div>
-                      <div class="portfolio-property-card">
-                        <div class="property-image property-image-precon"></div>
-                        <div class="property-card-body">
-                          <h3>842 Decatur St</h3>
-                          <p>Decatur, GA 30030</p>
-                          <div class="property-meta">
-                            <span>Bidding Active</span>
-                            <span>Budget: $118,000</span>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-
-                    <article class="portfolio-column">
-                      <div class="portfolio-column-header">
-                        <strong>Active Construction</strong>
-                        <span>2</span>
-                      </div>
-                      <div class="portfolio-property-card">
-                        <div class="property-image property-image-active"></div>
-                        <div class="property-card-body">
-                          <h3>1679 Oak Ln</h3>
-                          <p>Atlanta, GA 30316</p>
-                          <div class="property-meta">
-                            <span>On Schedule</span>
-                            <span>Spend: 57%</span>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-
-                    <article class="portfolio-column">
-                      <div class="portfolio-column-header">
-                        <strong>Listed / Sold</strong>
-                        <span>0</span>
-                      </div>
-                      <div class="portfolio-empty-card">
-                        <div class="portfolio-empty-icon"></div>
-                        <p>No active properties</p>
-                        <button type="button">+ Add</button>
-                      </div>
-                    </article>
-                  </div>
+                  <article class="snapshot-mini-card">
+                    <span class="mini-chip">Full Transaction</span>
+                    <strong>Milestones stay visible</strong>
+                    <p>Inspections, appraisals, contractor pricing, and progress are tracked together.</p>
+                  </article>
                 </div>
               </div>
             </div>

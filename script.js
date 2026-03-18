@@ -2,10 +2,6 @@ const menuToggle = document.querySelector("[data-menu-toggle]");
 const mobileNav = document.querySelector("[data-mobile-nav]");
 const yearNode = document.querySelector("[data-year]");
 const revealItems = document.querySelectorAll(".reveal");
-const portfolioShell = document.querySelector("[data-portfolio-shell]");
-const portfolioTarget = document.querySelector("[data-portfolio-target]");
-const zoomButtons = document.querySelectorAll("[data-zoom]");
-const compactPortfolioMedia = window.matchMedia("(max-width: 820px)");
 
 if (yearNode) {
   yearNode.textContent = new Date().getFullYear();
@@ -43,49 +39,3 @@ const revealObserver = new IntersectionObserver(
 );
 
 revealItems.forEach((item) => revealObserver.observe(item));
-
-if (portfolioShell && portfolioTarget && zoomButtons.length) {
-  let scale = 0.84;
-  const minScale = 0.68;
-  const maxScale = 1.02;
-  const step = 0.06;
-
-  const syncPortfolioScale = () => {
-    if (compactPortfolioMedia.matches) {
-      portfolioShell.style.setProperty("--portfolio-scale", "1");
-      portfolioShell.style.height = "auto";
-      zoomButtons.forEach((button) => {
-        button.disabled = true;
-      });
-      return;
-    }
-
-    portfolioShell.style.setProperty("--portfolio-scale", String(scale));
-    portfolioShell.style.height = `${portfolioTarget.offsetHeight * scale}px`;
-
-    zoomButtons.forEach((button) => {
-      const direction = button.getAttribute("data-zoom");
-      button.disabled =
-        (direction === "in" && scale >= maxScale) ||
-        (direction === "out" && scale <= minScale);
-    });
-  };
-
-  zoomButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const direction = button.getAttribute("data-zoom");
-
-      if (direction === "in") {
-        scale = Math.min(maxScale, Number((scale + step).toFixed(2)));
-      } else {
-        scale = Math.max(minScale, Number((scale - step).toFixed(2)));
-      }
-
-      syncPortfolioScale();
-    });
-  });
-
-  window.addEventListener("resize", syncPortfolioScale);
-  compactPortfolioMedia.addEventListener("change", syncPortfolioScale);
-  syncPortfolioScale();
-}

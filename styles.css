@@ -436,6 +436,178 @@ select {
   box-shadow: none;
 }
 
+.portfolio-snapshot {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.snapshot-topbar,
+.snapshot-stage-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.snapshot-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.snapshot-tabs span,
+.snapshot-count,
+.snapshot-stage-row span,
+.mini-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.42rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(13, 31, 51, 0.06);
+  color: var(--ink);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.snapshot-tabs .is-active {
+  background: rgba(85, 96, 217, 0.12);
+  color: #5560d9;
+}
+
+.snapshot-count {
+  background: rgba(13, 138, 131, 0.12);
+  color: var(--teal);
+}
+
+.snapshot-focus {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+  gap: 0.9rem;
+}
+
+.snapshot-main-card,
+.snapshot-mini-card {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 12px 28px rgba(13, 31, 51, 0.08);
+}
+
+.snapshot-main-card {
+  padding: 1rem;
+}
+
+.snapshot-main-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.snapshot-main-head p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+}
+
+.snapshot-main-head h3 {
+  margin: 0.22rem 0 0;
+  color: var(--ink-strong);
+  font-size: 1.28rem;
+}
+
+.snapshot-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.4rem 0.72rem;
+  border-radius: 999px;
+  background: rgba(255, 177, 26, 0.14);
+  color: #cc8400;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.snapshot-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+
+.snapshot-metrics article {
+  padding: 0.78rem;
+  border-radius: 18px;
+  background: rgba(13, 31, 51, 0.05);
+}
+
+.snapshot-metrics strong {
+  display: block;
+  color: var(--ink-strong);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.snapshot-metrics span {
+  display: block;
+  margin-top: 0.22rem;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+}
+
+.snapshot-lines {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.8rem;
+}
+
+.snapshot-lines div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  padding: 0.72rem 0.82rem;
+  border-radius: 16px;
+  background: rgba(13, 31, 51, 0.04);
+}
+
+.snapshot-lines span {
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+}
+
+.snapshot-lines strong {
+  color: var(--ink-strong);
+  font-size: 0.8rem;
+}
+
+.snapshot-side-cards {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.snapshot-mini-card {
+  padding: 0.9rem;
+}
+
+.snapshot-mini-card strong {
+  display: block;
+  margin-top: 0.55rem;
+  color: var(--ink-strong);
+  font-size: 0.94rem;
+}
+
+.snapshot-mini-card p {
+  margin: 0.45rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
 .outcome-panel h3,
 .board-copy h3 {
   margin: 0;
@@ -1695,6 +1867,10 @@ select {
     padding: 1rem;
   }
 
+  .portfolio-snapshot {
+    gap: 0.75rem;
+  }
+
   .preview-header {
     gap: 0.75rem;
     padding-bottom: 0.75rem;
@@ -1714,132 +1890,22 @@ select {
     font-size: 0.72rem;
   }
 
-  .preview-zoom {
-    display: none;
+  .snapshot-focus {
+    grid-template-columns: 1fr;
   }
 
-  .portfolio-scale-shell {
-    margin-top: 0.85rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 0.3rem;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-  }
-
-  .portfolio-scale-target {
-    width: max-content;
-    transform: none;
-  }
-
-  .portfolio-preview {
-    gap: 0.75rem;
-    min-width: max-content;
-  }
-
-  .portfolio-toolbar {
-    gap: 0.65rem;
-  }
-
-  .portfolio-tabs {
-    gap: 0.35rem;
-    padding: 0.25rem;
-    border-radius: 14px;
-  }
-
-  .portfolio-tabs span {
-    padding: 0.45rem 0.7rem;
-    font-size: 0.68rem;
-  }
-
-  .portfolio-search {
-    min-width: 8rem;
-    padding: 0.55rem 0.75rem;
-    font-size: 0.7rem;
-  }
-
-  .portfolio-pipeline {
-    gap: 0.45rem;
-  }
-
-  .portfolio-pipeline span {
-    font-size: 0.7rem;
-  }
-
-  .portfolio-columns {
-    display: flex;
-    width: max-content;
-    gap: 0.65rem;
-  }
-
-  .portfolio-column {
-    width: 10.75rem;
-    padding: 0.7rem;
-    border-radius: 18px;
-    scroll-snap-align: start;
-  }
-
-  .portfolio-column-header {
-    gap: 0.45rem;
-    margin-bottom: 0.55rem;
-  }
-
-  .portfolio-column-header strong {
-    font-size: 0.78rem;
-    line-height: 1.25;
-  }
-
-  .portfolio-column-header span {
-    min-width: 1.55rem;
-    height: 1.55rem;
-    font-size: 0.68rem;
-  }
-
-  .property-image {
-    min-height: 4.7rem;
-  }
-
-  .property-card-body {
-    padding: 0.7rem;
-  }
-
-  .property-card-body h3 {
-    font-size: 0.8rem;
-  }
-
-  .property-card-body p,
-  .property-meta span {
-    font-size: 0.66rem;
-  }
-
-  .property-meta {
-    gap: 0.3rem;
-    margin-top: 0.55rem;
-  }
-
-  .property-meta span {
-    padding: 0.28rem 0.45rem;
-  }
-
-  .portfolio-empty-card {
-    min-height: 8.8rem;
+  .snapshot-topbar,
+  .snapshot-stage-row {
     gap: 0.5rem;
-    padding: 0.8rem;
   }
 
-  .portfolio-empty-icon {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  .portfolio-empty-card p {
-    font-size: 0.72rem;
-  }
-
-  .portfolio-empty-card button {
-    padding: 0.35rem 0.7rem;
-    font-size: 0.72rem;
+  .snapshot-tabs span,
+  .snapshot-count,
+  .snapshot-stage-row span,
+  .mini-chip {
+    min-height: 1.82rem;
+    padding: 0.34rem 0.62rem;
+    font-size: 0.7rem;
   }
 }
 
@@ -1994,11 +2060,6 @@ select {
     display: none;
   }
 
-  .preview-header {
-    gap: 0.45rem;
-    padding-bottom: 0.55rem;
-  }
-
   .preview-header p {
     font-size: 0.64rem;
   }
@@ -2012,72 +2073,88 @@ select {
     font-size: 0.64rem;
   }
 
-  .portfolio-toolbar {
-    display: none;
+  .portfolio-snapshot {
+    gap: 0.6rem;
   }
 
-  .portfolio-search {
-    display: none;
+  .snapshot-topbar {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
-  .portfolio-pipeline {
-    gap: 0.3rem;
+  .snapshot-tabs,
+  .snapshot-stage-row {
+    gap: 0.35rem;
   }
 
-  .portfolio-pipeline span {
-    font-size: 0.6rem;
+  .snapshot-tabs span,
+  .snapshot-count,
+  .snapshot-stage-row span,
+  .mini-chip {
+    min-height: 1.62rem;
+    padding: 0.28rem 0.52rem;
+    font-size: 0.62rem;
   }
 
-  .portfolio-preview {
-    gap: 0.5rem;
+  .snapshot-main-card,
+  .snapshot-mini-card {
+    border-radius: 18px;
   }
 
-  .portfolio-column {
-    width: 7.8rem;
-    padding: 0.5rem;
+  .snapshot-main-card {
+    padding: 0.78rem;
   }
 
-  .portfolio-column-header strong {
-    font-size: 0.66rem;
-    line-height: 1.18;
+  .snapshot-main-head h3 {
+    font-size: 1rem;
   }
 
-  .property-image {
-    min-height: 3.35rem;
+  .snapshot-badge {
+    min-height: 1.72rem;
+    padding: 0.28rem 0.55rem;
+    font-size: 0.64rem;
   }
 
-  .property-card-body {
-    padding: 0.48rem;
+  .snapshot-metrics {
+    gap: 0.4rem;
+    margin-top: 0.7rem;
   }
 
-  .property-card-body h3 {
-    font-size: 0.66rem;
+  .snapshot-metrics article {
+    padding: 0.58rem;
+    border-radius: 14px;
   }
 
-  .property-card-body p,
-  .property-meta span {
-    font-size: 0.56rem;
+  .snapshot-metrics strong {
+    font-size: 0.84rem;
   }
 
-  .property-card-body p {
-    display: none;
+  .snapshot-metrics span {
+    font-size: 0.62rem;
   }
 
-  .property-meta span:last-child {
-    display: none;
+  .snapshot-lines {
+    gap: 0.42rem;
+    margin-top: 0.65rem;
   }
 
-  .portfolio-empty-card {
-    min-height: 5.75rem;
-    padding: 0.55rem;
+  .snapshot-lines div {
+    padding: 0.55rem 0.62rem;
+    border-radius: 12px;
   }
 
-  .portfolio-empty-card button {
-    display: none;
+  .snapshot-lines span,
+  .snapshot-lines strong,
+  .snapshot-mini-card p {
+    font-size: 0.68rem;
   }
 
-  .portfolio-column:nth-child(2),
-  .portfolio-column:nth-child(5) {
-    display: none;
+  .snapshot-mini-card {
+    padding: 0.72rem;
+  }
+
+  .snapshot-mini-card strong {
+    margin-top: 0.42rem;
+    font-size: 0.82rem;
   }
 }
