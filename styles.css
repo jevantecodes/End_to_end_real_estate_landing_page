@@ -101,15 +101,18 @@ select {
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
-  width: 2.8rem;
-  height: 2.8rem;
-  border-radius: 18px;
-  background: linear-gradient(135deg, var(--accent), #edb178);
-  color: white;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.8rem;
+  height: 3.5rem;
+  flex: 0 0 auto;
+}
+
+.brand-mark svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .brand-copy {
