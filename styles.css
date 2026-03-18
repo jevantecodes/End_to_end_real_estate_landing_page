@@ -185,6 +185,22 @@ select {
   align-items: center;
 }
 
+.hero-intro {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.hero-intro .hero-copy {
+  max-width: 50rem;
+}
+
+.portfolio-overview-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 2.5rem;
+  align-items: center;
+}
+
 .eyebrow {
   margin: 0 0 1rem;
   color: var(--accent);
@@ -1956,6 +1972,7 @@ select {
 
 @media (max-width: 1080px) {
   .hero,
+  .portfolio-overview-layout,
   .problem-layout,
   .camera-layout,
   .package-board,
@@ -2049,6 +2066,10 @@ select {
   .hero {
     gap: 1.5rem;
     padding-top: 3.75rem;
+  }
+
+  .portfolio-overview-layout {
+    gap: 1.8rem;
   }
 
   .hero-copy {
@@ -2209,6 +2230,10 @@ select {
   .hero {
     gap: 0.8rem;
     padding-top: 1.4rem;
+  }
+
+  .portfolio-overview-layout {
+    gap: 1.2rem;
   }
 
   .hero-actions {
