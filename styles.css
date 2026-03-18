@@ -1388,6 +1388,127 @@ select {
     linear-gradient(180deg, #fff7ec, #f2e6d6);
 }
 
+.ai-kitchen-plan {
+  position: relative;
+  min-height: 11.2rem;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 243, 0.96), rgba(242, 232, 219, 0.92));
+}
+
+.ai-kitchen-plan::before {
+  content: "";
+  position: absolute;
+  inset: 0.8rem;
+  border: 2px solid rgba(13, 31, 51, 0.16);
+  border-radius: 16px;
+  background:
+    linear-gradient(rgba(13, 31, 51, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 31, 51, 0.05) 1px, transparent 1px),
+    rgba(255, 255, 255, 0.74);
+  background-size: 1.15rem 1.15rem;
+}
+
+.kitchen-counter,
+.kitchen-island,
+.kitchen-window,
+.kitchen-sink,
+.kitchen-range {
+  position: absolute;
+  z-index: 1;
+}
+
+.kitchen-counter {
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255, 170, 74, 0.96), rgba(207, 83, 22, 0.92));
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.kitchen-counter-top {
+  top: 1.45rem;
+  left: 1.55rem;
+  right: 4rem;
+  height: 1rem;
+}
+
+.kitchen-counter-left {
+  top: 2.3rem;
+  left: 1.55rem;
+  width: 1rem;
+  height: 4.85rem;
+}
+
+.kitchen-island {
+  bottom: 2rem;
+  left: 50%;
+  width: 4.4rem;
+  height: 2.05rem;
+  transform: translateX(-50%);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(253, 190, 124, 0.92), rgba(214, 111, 39, 0.94));
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.32),
+    0 8px 18px rgba(13, 31, 51, 0.08);
+}
+
+.kitchen-island::after {
+  content: "";
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+  bottom: -0.55rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: rgba(13, 31, 51, 0.12);
+  box-shadow:
+    -1rem 0 0 rgba(13, 31, 51, 0.12),
+    1rem 0 0 rgba(13, 31, 51, 0.12);
+}
+
+.kitchen-window {
+  border-radius: 999px;
+  background: rgba(130, 196, 255, 0.82);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.62);
+}
+
+.kitchen-window-top {
+  top: 0.95rem;
+  right: 4.35rem;
+  width: 2.5rem;
+  height: 0.45rem;
+}
+
+.kitchen-window-right {
+  top: 3rem;
+  right: 1.15rem;
+  width: 0.45rem;
+  height: 2.85rem;
+}
+
+.kitchen-sink {
+  top: 1.65rem;
+  left: 4.85rem;
+  width: 1.45rem;
+  height: 0.72rem;
+  border-radius: 0.5rem;
+  border: 2px solid rgba(13, 31, 51, 0.18);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.kitchen-range {
+  top: 4.1rem;
+  left: 1.35rem;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 10px;
+  border: 2px solid rgba(13, 31, 51, 0.18);
+  background:
+    radial-gradient(circle at 35% 35%, rgba(13, 31, 51, 0.18) 0 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 65% 35%, rgba(13, 31, 51, 0.18) 0 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 35% 65%, rgba(13, 31, 51, 0.18) 0 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 65% 65%, rgba(13, 31, 51, 0.18) 0 0.18rem, transparent 0.2rem),
+    rgba(255, 255, 255, 0.92);
+}
+
 .ai-chart-frame {
   display: flex;
   align-items: flex-end;
