@@ -338,9 +338,7 @@ select {
   border-bottom: 1px solid var(--line);
 }
 
-.preview-header p,
-.preview-card span,
-.camera-notes span {
+.preview-header p {
   margin: 0;
   font-size: 0.82rem;
   color: var(--ink-soft);
@@ -361,8 +359,7 @@ select {
   font-size: 2rem;
 }
 
-.status-pill,
-.camera-badge {
+.status-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -374,40 +371,6 @@ select {
   font-size: 0.78rem;
 }
 
-.preview-grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.preview-card {
-  position: relative;
-  padding: 1rem;
-  border: 1px solid rgba(13, 31, 51, 0.08);
-  border-radius: var(--radius-lg);
-  background: var(--surface-strong);
-  min-height: 12rem;
-}
-
-.preview-card-lg {
-  grid-row: span 2;
-}
-
-.preview-card-camera {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 243, 236, 0.86));
-}
-
-.card-title-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.6rem;
-}
-
-.card-title-row h3,
 .outcome-panel h3,
 .board-copy h3 {
   margin: 0;
@@ -415,7 +378,6 @@ select {
   font-size: 1.05rem;
 }
 
-.trade-list,
 .board-columns ul,
 .check-list {
   margin: 1rem 0 0;
@@ -423,7 +385,6 @@ select {
   list-style: none;
 }
 
-.trade-list li,
 .board-columns li,
 .check-list li {
   position: relative;
@@ -432,13 +393,11 @@ select {
   line-height: 1.6;
 }
 
-.trade-list li + li,
 .board-columns li + li,
 .check-list li + li {
   margin-top: 0.8rem;
 }
 
-.trade-list li::before,
 .board-columns li::before,
 .check-list li::before {
   content: "";
@@ -449,85 +408,185 @@ select {
   height: 0.45rem;
   border-radius: 50%;
   background: var(--accent);
-}
-
-.trade-list strong {
-  display: block;
-  margin-top: 0.18rem;
-  color: var(--ink-strong);
-  font-size: 0.94rem;
-}
-
-.mini-stack {
+.portfolio-preview {
   display: grid;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-top: 1rem;
 }
 
-.mini-stack div {
-  padding: 0.8rem 0.95rem;
-  border-radius: 16px;
-  background: rgba(13, 138, 131, 0.08);
-}
-
-.mini-stack strong {
-  display: block;
-  color: var(--ink-strong);
-  font-size: 1.3rem;
-}
-
-.camera-feed {
-  position: relative;
+.portfolio-toolbar {
   display: flex;
-  align-items: flex-end;
-  min-height: 12rem;
-  margin-top: 1rem;
-  padding: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.portfolio-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem;
   border-radius: 18px;
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(8, 13, 22, 0.18), rgba(8, 13, 22, 0.66)),
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.18), transparent 18%),
-    linear-gradient(135deg, #344154, #161f2d 48%, #2b3848);
+  background: rgba(13, 31, 51, 0.05);
 }
 
-.camera-overlay strong {
-  display: block;
-  color: white;
-  font-size: 1rem;
+.portfolio-tabs span,
+.portfolio-search,
+.portfolio-pipeline span,
+.portfolio-column-header span,
+.property-card-body p,
+.property-meta span {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
 }
 
-.camera-overlay p {
-  margin: 0.3rem 0 0;
-  color: rgba(255, 255, 255, 0.78);
-  line-height: 1.55;
-  font-size: 0.92rem;
+.portfolio-tabs span {
+  padding: 0.55rem 0.9rem;
+  border-radius: 14px;
 }
 
-.preview-card-floorplan {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(243, 237, 230, 0.92));
-}
-
-.floorplan-frame {
-  display: grid;
-  place-items: center;
-  min-height: 12rem;
-  margin-top: 1rem;
-  border-radius: 18px;
-  background: rgba(13, 31, 51, 0.04);
-}
-
-.floorplan-frame svg {
-  width: 100%;
-  max-width: 15rem;
-  height: auto;
-}
-
-.floorplan-frame text {
-  fill: #1b3553;
-  font-family: "Manrope", "Avenir Next", sans-serif;
-  font-size: 12px;
+.portfolio-tabs .is-active {
+  color: #5560d9;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 6px 16px rgba(13, 31, 51, 0.08);
   font-weight: 700;
+}
+
+.portfolio-search {
+  min-width: 11rem;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(13, 31, 51, 0.08);
+  text-align: left;
+}
+
+.portfolio-pipeline {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.portfolio-pipeline-bar {
+  display: flex;
+  overflow: hidden;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: rgba(13, 31, 51, 0.08);
+}
+
+.portfolio-pipeline-bar i {
+  display: block;
+  height: 100%;
+}
+
+.segment-underwriting {
+  width: 34%;
+  background: #858b9b;
+}
+
+.segment-precon {
+  width: 34%;
+  background: #ffb11a;
+}
+
+.segment-active {
+  width: 32%;
+  background: #19c37d;
+}
+
+.portfolio-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.portfolio-column {
+  padding: 0.85rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(13, 31, 51, 0.08);
+}
+
+.portfolio-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.portfolio-column-header strong {
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.portfolio-column-header span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.portfolio-property-card {
+  overflow: hidden;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 10px 22px rgba(13, 31, 51, 0.08);
+}
+
+.property-image {
+  min-height: 7.2rem;
+  background-size: cover;
+  background-position: center;
+}
+
+.property-image-entry {
+  background:
+    linear-gradient(180deg, rgba(13, 31, 51, 0.1), rgba(13, 31, 51, 0.46)),
+    linear-gradient(135deg, #3b2b20, #8c6d49 48%, #d0b28e);
+}
+
+.property-image-precon {
+  background:
+    linear-gradient(180deg, rgba(13, 31, 51, 0.08), rgba(13, 31, 51, 0.42)),
+    linear-gradient(135deg, #6a7888, #bfc8d1 46%, #5f6d7a);
+}
+
+.property-image-active {
+  background:
+    linear-gradient(180deg, rgba(13, 31, 51, 0.1), rgba(13, 31, 51, 0.42)),
+    linear-gradient(135deg, #55636f, #b8b190 45%, #8d6f4c);
+}
+
+.property-card-body {
+  padding: 0.9rem;
+}
+
+.property-card-body h3 {
+  margin: 0;
+  color: var(--ink-strong);
+  font-size: 0.95rem;
+}
+
+.property-card-body p {
+  margin: 0.3rem 0 0;
+}
+
+.property-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.property-meta span {
+  padding: 0.38rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(13, 31, 51, 0.06);
+}
 }
 
 .trust-banner {

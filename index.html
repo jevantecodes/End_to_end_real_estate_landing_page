@@ -111,92 +111,86 @@
           <div class="preview-window">
             <div class="preview-header">
               <div>
-                <p>Project dossier</p>
-                <h2>2417 Ashby Avenue</h2>
+                <p>Portfolio</p>
+                <h2>Master Portfolio</h2>
               </div>
-              <span class="status-pill">Quote-ready</span>
+              <span class="status-pill">Kanban view</span>
             </div>
 
-            <div class="preview-grid">
-              <article class="preview-card preview-card-lg">
-                <div class="card-title-row">
-                  <h3>Trade package matrix</h3>
-                  <span>6 active trades</span>
+            <div class="portfolio-preview">
+              <div class="portfolio-toolbar">
+                <div class="portfolio-tabs">
+                  <span>List</span>
+                  <span class="is-active">Kanban</span>
+                  <span>Map</span>
                 </div>
-                <ul class="trade-list">
-                  <li>
-                    <span>Flooring</span>
-                    <strong>1,986 sq ft mapped + waste factor</strong>
-                  </li>
-                  <li>
-                    <span>Electrical</span>
-                    <strong>38 fixtures, 24 switches, panel notes attached</strong>
-                  </li>
-                  <li>
-                    <span>Paint</span>
-                    <strong>Interior walls, trim, doors, prep photos bundled</strong>
-                  </li>
-                </ul>
-              </article>
+                <div class="portfolio-search">Search addresses...</div>
+              </div>
 
-              <article class="preview-card">
-                <div class="card-title-row">
-                  <h3>Scope release</h3>
-                  <span>Office dispatch</span>
+              <div class="portfolio-pipeline">
+                <span>6 properties in pipeline</span>
+                <div class="portfolio-pipeline-bar">
+                  <i class="segment-underwriting"></i>
+                  <i class="segment-precon"></i>
+                  <i class="segment-active"></i>
                 </div>
-                <div class="mini-stack">
-                  <div>
-                    <strong>12</strong>
-                    <span>subcontractors invited</span>
-                  </div>
-                  <div>
-                    <strong>7</strong>
-                    <span>bids received</span>
-                  </div>
-                  <div>
-                    <strong>3</strong>
-                    <span>follow-up RFIs logged</span>
-                  </div>
-                </div>
-              </article>
+              </div>
 
-              <article class="preview-card preview-card-camera">
-                <div class="card-title-row">
-                  <h3>Live site camera</h3>
-                  <span>Front entry</span>
-                </div>
-                <div class="camera-feed">
-                  <span class="camera-badge">Live</span>
-                  <div class="camera-overlay">
-                    <strong>Security + progress feed</strong>
-                    <p>Monitor crew activity, deter theft, and verify milestone completion.</p>
+              <div class="portfolio-columns">
+                <article class="portfolio-column">
+                  <div class="portfolio-column-header">
+                    <strong>Leads / Underwriting</strong>
+                    <span>2</span>
                   </div>
-                </div>
-              </article>
+                  <div class="portfolio-property-card">
+                    <div class="property-image property-image-entry"></div>
+                    <div class="property-card-body">
+                      <h3>1022 Howell Mill Road</h3>
+                      <p>Atlanta, GA 30330</p>
+                      <div class="property-meta">
+                        <span>Under Review</span>
+                        <span>Budget: $20,000</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
 
-              <article class="preview-card preview-card-floorplan">
-                <div class="card-title-row">
-                  <h3>2D floor plan</h3>
-                  <span>Measured layout sample</span>
-                </div>
-                <div class="floorplan-frame" aria-hidden="true">
-                  <svg viewBox="0 0 240 170" role="img" aria-label="Two-dimensional floor plan sample">
-                    <rect x="16" y="16" width="208" height="138" rx="10" fill="#fff9f2" stroke="#1b3553" stroke-width="4" />
-                    <line x1="92" y1="16" x2="92" y2="154" stroke="#1b3553" stroke-width="4" />
-                    <line x1="16" y1="74" x2="224" y2="74" stroke="#1b3553" stroke-width="4" />
-                    <line x1="150" y1="74" x2="150" y2="154" stroke="#1b3553" stroke-width="4" />
-                    <line x1="92" y1="110" x2="150" y2="110" stroke="#1b3553" stroke-width="4" />
-                    <line x1="58" y1="74" x2="58" y2="104" stroke="#fff9f2" stroke-width="6" />
-                    <line x1="122" y1="74" x2="122" y2="100" stroke="#fff9f2" stroke-width="6" />
-                    <line x1="150" y1="126" x2="176" y2="126" stroke="#fff9f2" stroke-width="6" />
-                    <text x="32" y="50">Bed</text>
-                    <text x="112" y="50">Living</text>
-                    <text x="30" y="98">Bath</text>
-                    <text x="104" y="98">Kitchen</text>
-                    <text x="166" y="134">Dining</text>
-                  </svg>
-                </div>
-              </article>
+                <article class="portfolio-column">
+                  <div class="portfolio-column-header">
+                    <strong>Pre-Construction</strong>
+                    <span>2</span>
+                  </div>
+                  <div class="portfolio-property-card">
+                    <div class="property-image property-image-precon"></div>
+                    <div class="property-card-body">
+                      <h3>842 Decatur St</h3>
+                      <p>Decatur, GA 30030</p>
+                      <div class="property-meta">
+                        <span>Bidding Active</span>
+                        <span>Budget: $118,000</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="portfolio-column">
+                  <div class="portfolio-column-header">
+                    <strong>Active Construction</strong>
+                    <span>2</span>
+                  </div>
+                  <div class="portfolio-property-card">
+                    <div class="property-image property-image-active"></div>
+                    <div class="property-card-body">
+                      <h3>1679 Oak Ln</h3>
+                      <p>Atlanta, GA 30316</p>
+                      <div class="property-meta">
+                        <span>On Schedule</span>
+                        <span>Spend: 57%</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
             </div>
           </div>
         </div>
