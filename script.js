@@ -2,6 +2,7 @@ const menuToggle = document.querySelector("[data-menu-toggle]");
 const mobileNav = document.querySelector("[data-mobile-nav]");
 const yearNode = document.querySelector("[data-year]");
 const revealItems = document.querySelectorAll(".reveal");
+const pidRevealButtons = document.querySelectorAll("[data-pid-reveal]");
 
 if (yearNode) {
   yearNode.textContent = new Date().getFullYear();
@@ -39,3 +40,14 @@ const revealObserver = new IntersectionObserver(
 );
 
 revealItems.forEach((item) => revealObserver.observe(item));
+
+pidRevealButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const row = button.closest(".problem-list-row");
+    if (!row) {
+      return;
+    }
+
+    row.classList.add("is-revealed");
+  });
+});
