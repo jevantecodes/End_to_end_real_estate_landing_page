@@ -478,9 +478,69 @@ const heroCopy = document.querySelector("[data-hero-copy]");
 const heroScrollCue = document.querySelector(".hero-scroll-cue");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-if (heroVideo && prefersReducedMotion.matches) {
+const syncHeroVideoToScroll = () => {
+  if (!heroSection || !heroVideo || prefersReducedMotion.matches) {
+    return;
+  }
+
+  let rafId = 0;
+  let scrubDuration = 0;
+
+  const applyScrollProgress = () => {
+    rafId = 0;
+
+    if (!scrubDuration) {
+      return;
+    }
+
+    const sectionRect = heroSection.getBoundingClientRect();
+    const scrollSpan = Math.max(sectionRect.height - window.innerHeight * 0.3, 1);
+    const progress = Math.min(Math.max((0 - sectionRect.top) / scrollSpan, 0), 1);
+
+    heroVideo.currentTime = progress * scrubDuration;
+  };
+
+  const queueProgressUpdate = () => {
+    if (rafId) {
+      return;
+    }
+
+    rafId = window.requestAnimationFrame(applyScrollProgress);
+  };
+
+  const handleMetadata = () => {
+    scrubDuration = Math.max(heroVideo.duration - 0.1, 0);
+    heroVideo.pause();
+    queueProgressUpdate();
+  };
+
+  if (heroVideo.readyState >= 1 && Number.isFinite(heroVideo.duration)) {
+    handleMetadata();
+  } else {
+    heroVideo.addEventListener("loadedmetadata", handleMetadata, { once: true });
+  }
+
+  heroVideo.pause();
+  window.addEventListener("scroll", queueProgressUpdate, { passive: true });
+  window.addEventListener("resize", queueProgressUpdate);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      heroVideo.pause();
+    } else {
+      queueProgressUpdate();
+    }
+  });
+};
+
+if (heroVideo) {
   heroVideo.pause();
 }
+
+if (heroVideo && prefersReducedMotion.matches) {
+  heroVideo.currentTime = 0;
+}
+
+syncHeroVideoToScroll();
 
 if (!prefersReducedMotion.matches && window.Lenis) {
   const lenis = new window.Lenis({
@@ -581,20 +641,6 @@ if (!prefersReducedMotion.matches && heroSection && heroCopy && window.gsap) {
 
   if (window.ScrollTrigger) {
     window.gsap.registerPlugin(window.ScrollTrigger);
-
-    if (heroVideo) {
-      window.gsap.to(heroVideo, {
-        yPercent: 8,
-        scale: 1.09,
-        ease: "none",
-        scrollTrigger: {
-          trigger: heroSection,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    }
 
     window.gsap.to(heroCopy, {
       yPercent: -7,
