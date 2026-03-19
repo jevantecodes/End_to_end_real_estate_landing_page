@@ -477,6 +477,7 @@ const heroVideo = document.querySelector("[data-hero-video]");
 const heroCopy = document.querySelector("[data-hero-copy]");
 const heroScrollCue = document.querySelector(".hero-scroll-cue");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let queueHeroVideoProgressUpdate = () => {};
 
 const syncHeroVideoToScroll = () => {
   if (!heroSection || !heroVideo || prefersReducedMotion.matches) {
@@ -485,6 +486,7 @@ const syncHeroVideoToScroll = () => {
 
   let rafId = 0;
   let scrubDuration = 0;
+  let isPrimed = false;
 
   const applyScrollProgress = () => {
     rafId = 0;
@@ -508,9 +510,36 @@ const syncHeroVideoToScroll = () => {
     rafId = window.requestAnimationFrame(applyScrollProgress);
   };
 
+  queueHeroVideoProgressUpdate = queueProgressUpdate;
+
+  const primeVideo = () => {
+    if (isPrimed) {
+      return;
+    }
+
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    heroVideo.playsInline = true;
+
+    const playAttempt = heroVideo.play();
+
+    if (playAttempt && typeof playAttempt.then === "function") {
+      playAttempt
+        .then(() => {
+          heroVideo.pause();
+          isPrimed = true;
+          queueProgressUpdate();
+        })
+        .catch(() => {
+          // Mobile browsers may still require a gesture; keep the fallback listeners below.
+        });
+    }
+  };
+
   const handleMetadata = () => {
     scrubDuration = Math.max(heroVideo.duration - 0.1, 0);
     heroVideo.pause();
+    primeVideo();
     queueProgressUpdate();
   };
 
@@ -522,13 +551,26 @@ const syncHeroVideoToScroll = () => {
 
   heroVideo.pause();
   window.addEventListener("scroll", queueProgressUpdate, { passive: true });
+  window.addEventListener("touchmove", queueProgressUpdate, { passive: true });
   window.addEventListener("resize", queueProgressUpdate);
+  window.addEventListener("orientationchange", queueProgressUpdate);
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       heroVideo.pause();
     } else {
       queueProgressUpdate();
     }
+  });
+
+  ["touchstart", "pointerdown", "click"].forEach((eventName) => {
+    window.addEventListener(
+      eventName,
+      () => {
+        primeVideo();
+        queueProgressUpdate();
+      },
+      { passive: true, once: true },
+    );
   });
 };
 
@@ -556,6 +598,8 @@ if (!prefersReducedMotion.matches && window.Lenis) {
     if (window.ScrollTrigger) {
       window.ScrollTrigger.update();
     }
+
+    queueHeroVideoProgressUpdate();
   });
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
