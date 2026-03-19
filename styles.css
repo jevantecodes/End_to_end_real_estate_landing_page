@@ -272,6 +272,60 @@ select {
   background: linear-gradient(180deg, rgba(244, 236, 226, 0) 0%, rgba(244, 236, 226, 0.58) 82%, rgba(244, 236, 226, 0.88) 100%);
 }
 
+.hero-video-caption {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  width: min(44rem, calc(100% - 3rem));
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
+}
+
+.hero-video-caption.is-visible {
+  opacity: 1;
+}
+
+.hero-video-caption p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.98);
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.45rem, 3vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  text-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.32),
+    0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.hero-video-caption-caret {
+  width: 2px;
+  height: 1.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+  animation: hero-caption-blink 0.9s steps(1) infinite;
+}
+
+@keyframes hero-caption-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0.18;
+  }
+}
+
 .portfolio-overview-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
@@ -3354,6 +3408,18 @@ select {
 
   .hero-video-shell {
     border-radius: 22px;
+  }
+
+  .hero-video-caption {
+    width: min(26rem, calc(100% - 1.8rem));
+  }
+
+  .hero-video-caption p {
+    font-size: clamp(1.05rem, 5.3vw, 1.62rem);
+  }
+
+  .hero-video-caption-caret {
+    height: 1.05rem;
   }
 
   .hero-scroll-cue {

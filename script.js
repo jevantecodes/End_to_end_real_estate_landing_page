@@ -476,8 +476,26 @@ const heroSection = document.querySelector(".hero-intro");
 const heroVideo = document.querySelector("[data-hero-video]");
 const heroCopy = document.querySelector("[data-hero-copy]");
 const heroScrollCue = document.querySelector(".hero-scroll-cue");
+const heroCaption = document.querySelector(".hero-video-caption");
+const heroCaptionText = document.querySelector("[data-hero-caption-text]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let queueHeroVideoProgressUpdate = () => {};
+const heroCaptionMessage =
+  "When we are investing in a property, there can be a lot of scattered information";
+
+const updateHeroCaption = (currentTime = 0) => {
+  if (!heroCaption || !heroCaptionText) {
+    return;
+  }
+
+  const startTime = 4;
+  const typingDuration = 2.8;
+  const progress = Math.min(Math.max((currentTime - startTime) / typingDuration, 0), 1);
+  const visibleCharacters = Math.round(heroCaptionMessage.length * progress);
+
+  heroCaption.classList.toggle("is-visible", visibleCharacters > 0);
+  heroCaptionText.textContent = heroCaptionMessage.slice(0, visibleCharacters);
+};
 
 const syncHeroVideoToScroll = () => {
   if (!heroSection || !heroVideo || prefersReducedMotion.matches) {
@@ -500,6 +518,7 @@ const syncHeroVideoToScroll = () => {
     const progress = Math.min(Math.max((0 - sectionRect.top) / scrollSpan, 0), 1);
 
     heroVideo.currentTime = progress * scrubDuration;
+    updateHeroCaption(heroVideo.currentTime);
   };
 
   const queueProgressUpdate = () => {
@@ -580,6 +599,10 @@ if (heroVideo) {
 
 if (heroVideo && prefersReducedMotion.matches) {
   heroVideo.currentTime = 0;
+}
+
+if (prefersReducedMotion.matches) {
+  updateHeroCaption(0);
 }
 
 syncHeroVideoToScroll();
