@@ -79,6 +79,46 @@
         <div class="hero-copy reveal">
           <p class="eyebrow">Property intelligence for investors and general contractors</p>
           <h1>Track every property's cost, scope, and status in one place.</h1>
+          <p class="hero-intro-note">
+            Move from acquisition to underwriting, room design, renovation pricing,
+            and execution with one property record instead of scattered files.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#workflow">See how it works</a>
+            <a class="button button-secondary" href="#ai-examples">View AI examples</a>
+          </div>
+        </div>
+
+        <div class="hero-stage reveal delay-1">
+          <div class="hero-stage-copy">
+            <p class="hero-stage-kicker">Property record to full execution</p>
+            <h2>One organized system for management, cost analysis, and room design.</h2>
+            <p>
+              The landing page now follows a more editorial structure, with a large
+              visual stage and cleaner section rhythm closer to the reference you shared.
+            </p>
+          </div>
+
+          <div class="hero-stage-visual" aria-hidden="true">
+            <div class="hero-stage-badge">Renovated interior hero image slot</div>
+            <div class="hero-stage-metrics">
+              <span>Portfolio oversight</span>
+              <span>Room-level costing</span>
+              <span>Design visibility</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="community-strip reveal delay-2">
+          <p>Across the real estate transaction</p>
+          <div class="community-strip-row">
+            <span>Inspection</span>
+            <span>Appraisal</span>
+            <span>Underwriting</span>
+            <span>Pre-Construction</span>
+            <span>Construction</span>
+            <span>Sale</span>
+          </div>
         </div>
       </section>
 
@@ -217,73 +257,292 @@
               <span class="status-pill">Portfolio snapshot</span>
             </div>
 
-            <div class="portfolio-snapshot">
+            <div class="portfolio-snapshot" id="property-management-board">
               <div class="snapshot-topbar">
-                <div class="snapshot-tabs">
-                  <span class="is-active">Property Management</span>
-                  <span>Full Cost Analysis</span>
-                  <span>Room Design</span>
+                <div class="snapshot-tabs" role="tablist" aria-label="Portfolio views">
+                  <button type="button" role="tab" aria-selected="false" data-portfolio-view-tab="list">
+                    List
+                  </button>
+                  <button
+                    type="button"
+                    class="is-active"
+                    role="tab"
+                    aria-selected="true"
+                    data-portfolio-view-tab="kanban"
+                  >
+                    Kanban
+                  </button>
+                  <button type="button" role="tab" aria-selected="false" data-portfolio-view-tab="map">
+                    Map
+                  </button>
                 </div>
                 <span class="snapshot-count">6 properties</span>
               </div>
 
-              <div class="snapshot-board" id="property-management-board">
-                <article class="snapshot-board-column">
-                  <div class="snapshot-board-header">
-                    <div class="snapshot-board-title">
-                      <span class="board-stage-dot board-stage-underwriting"></span>
-                      <strong>Underwriting</strong>
-                    </div>
-                    <span class="snapshot-board-count">2</span>
-                  </div>
-                  <div class="snapshot-board-card">
-                    <p>Under Review</p>
-                    <h3>1022 Howell Mill Road</h3>
-                    <span>Budget: $20,000</span>
-                  </div>
-                </article>
-
-                <article class="snapshot-board-column">
-                  <div class="snapshot-board-header">
-                    <div class="snapshot-board-title">
-                      <span class="board-stage-dot board-stage-precon"></span>
-                      <strong>Pre-Construction</strong>
-                    </div>
-                    <span class="snapshot-board-count">2</span>
-                  </div>
-                  <div class="snapshot-board-card">
-                    <p>Bidding Active</p>
-                    <h3>842 Decatur St</h3>
-                    <span>Budget: $118,000</span>
-                  </div>
-                </article>
-
-                <article class="snapshot-board-column">
-                  <div class="snapshot-board-header">
-                    <div class="snapshot-board-title">
-                      <span class="board-stage-dot board-stage-active"></span>
-                      <strong>Active Construction</strong>
-                    </div>
-                    <span class="snapshot-board-count">2</span>
-                  </div>
-                  <div class="snapshot-board-card">
-                    <p>On Schedule</p>
-                    <h3>1679 Oak Ln</h3>
-                    <span>Spend: 57%</span>
-                  </div>
-                </article>
+              <div class="snapshot-progress" aria-hidden="true">
+                <span class="snapshot-progress-segment snapshot-progress-underwriting"></span>
+                <span class="snapshot-progress-segment snapshot-progress-escrow"></span>
+                <span class="snapshot-progress-segment snapshot-progress-precon"></span>
+                <span class="snapshot-progress-segment snapshot-progress-active"></span>
+                <span class="snapshot-progress-segment snapshot-progress-listed"></span>
               </div>
 
-              <div class="snapshot-detail-grid">
-                <article class="snapshot-detail-card">
-                  <span class="mini-chip">Full Cost Analysis</span>
-                  <strong>Budgets, contractor pricing, and room-level cost ranges stay connected.</strong>
-                </article>
+              <div class="portfolio-view" data-portfolio-view="list" hidden>
+                <div class="portfolio-list-table">
+                  <div class="portfolio-list-header">
+                    <span>Property</span>
+                    <span>Stage</span>
+                    <span>Status</span>
+                    <span>Budget</span>
+                    <span>Spent</span>
+                    <span>Est. ROI</span>
+                    <span>Days</span>
+                  </div>
 
-                <article class="snapshot-detail-card">
-                  <span class="mini-chip">Room Design</span>
-                  <strong>Measurements, floor plans, and room features stay ready for planning.</strong>
-                </article>
+                  <article class="portfolio-list-row">
+                    <div class="portfolio-list-property">
+                      <span class="portfolio-list-thumb thumb-howell"></span>
+                      <div>
+                        <strong>1022 Howell Mill Road</strong>
+                        <p>Atlanta, GA 30300 • Single Family</p>
+                      </div>
+                    </div>
+                    <span>Leads / Underwriting</span>
+                    <span class="portfolio-status-dot portfolio-status-neutral">Under Review</span>
+                    <strong>$20,000</strong>
+                    <span>$0</span>
+                    <span>—</span>
+                    <span>5d</span>
+                  </article>
+
+                  <article class="portfolio-list-row">
+                    <div class="portfolio-list-property">
+                      <span class="portfolio-list-thumb thumb-ponce"></span>
+                      <div>
+                        <strong>1247 Ponce De Leon</strong>
+                        <p>Atlanta, GA 30306 • SFR</p>
+                      </div>
+                    </div>
+                    <span>Leads / Underwriting</span>
+                    <span class="portfolio-status-dot portfolio-status-neutral">Under Review</span>
+                    <strong>$95,000</strong>
+                    <span>$0</span>
+                    <span>17.2%</span>
+                    <span>19d</span>
+                  </article>
+
+                  <article class="portfolio-list-row">
+                    <div class="portfolio-list-property">
+                      <span class="portfolio-list-thumb thumb-midtown"></span>
+                      <div>
+                        <strong>Midtown Condo #4B</strong>
+                        <p>Atlanta, GA 30309 • Condo</p>
+                      </div>
+                    </div>
+                    <span>Pre-Construction</span>
+                    <span class="portfolio-status-dot portfolio-status-neutral">Design Intake</span>
+                    <strong>$62,000</strong>
+                    <span>$0</span>
+                    <span>24.8%</span>
+                    <span>58d</span>
+                  </article>
+
+                  <article class="portfolio-list-row">
+                    <div class="portfolio-list-property">
+                      <span class="portfolio-list-thumb thumb-decatur"></span>
+                      <div>
+                        <strong>842 Decatur St</strong>
+                        <p>Decatur, GA 30030 • SFR</p>
+                      </div>
+                    </div>
+                    <span>Pre-Construction</span>
+                    <span class="portfolio-status-dot portfolio-status-warning">Bidding Active</span>
+                    <strong>$118,000</strong>
+                    <span>$4,200</span>
+                    <span>19.1%</span>
+                    <span>94d</span>
+                  </article>
+
+                  <article class="portfolio-list-row">
+                    <div class="portfolio-list-property">
+                      <span class="portfolio-list-thumb thumb-oak"></span>
+                      <div>
+                        <strong>1679 Oak Ln</strong>
+                        <p>Atlanta, GA 30316 • SFR</p>
+                      </div>
+                    </div>
+                    <span>Active Construction</span>
+                    <span class="portfolio-status-dot portfolio-status-success">On Schedule</span>
+                    <strong>$145,000</strong>
+                    <span>$82,400</span>
+                    <span>22.4%</span>
+                    <span>169d</span>
+                  </article>
+
+                  <article class="portfolio-list-row">
+                    <div class="portfolio-list-property">
+                      <span class="portfolio-list-thumb thumb-druid"></span>
+                      <div>
+                        <strong>North Druid Hills SFR</strong>
+                        <p>Atlanta, GA 30329 • SFR</p>
+                      </div>
+                    </div>
+                    <span>Active Construction</span>
+                    <span class="portfolio-status-dot portfolio-status-success">On Schedule</span>
+                    <strong>$132,000</strong>
+                    <span>$85,800</span>
+                    <span>20.1%</span>
+                    <span>185d</span>
+                  </article>
+                </div>
+              </div>
+
+              <div class="portfolio-view is-active" data-portfolio-view="kanban">
+                <div class="snapshot-board">
+                  <article class="snapshot-board-column">
+                    <div class="snapshot-board-header">
+                      <div class="snapshot-board-title">
+                        <span class="board-stage-dot board-stage-underwriting"></span>
+                        <strong>Leads / Underwriting</strong>
+                      </div>
+                      <span class="snapshot-board-count">2</span>
+                    </div>
+                    <div class="snapshot-board-card is-rich thumb-howell">
+                      <div class="snapshot-card-image"></div>
+                      <div class="snapshot-card-body">
+                        <p>Under Review</p>
+                        <h3>1022 Howell Mill Road</h3>
+                        <span>Budget: $20,000</span>
+                      </div>
+                    </div>
+                    <div class="snapshot-board-card is-rich thumb-ponce">
+                      <div class="snapshot-card-image"></div>
+                      <div class="snapshot-card-body">
+                        <p>Under Review</p>
+                        <h3>1247 Ponce De Leon</h3>
+                        <span>Budget: $95,000</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article class="snapshot-board-column">
+                    <div class="snapshot-board-header">
+                      <div class="snapshot-board-title">
+                        <span class="board-stage-dot board-stage-escrow"></span>
+                        <strong>Under Contract / Escrow</strong>
+                      </div>
+                      <span class="snapshot-board-count">0</span>
+                    </div>
+                    <div class="snapshot-board-card snapshot-board-empty">
+                      <p>No active escrows</p>
+                      <span>Add</span>
+                    </div>
+                  </article>
+
+                  <article class="snapshot-board-column">
+                    <div class="snapshot-board-header">
+                      <div class="snapshot-board-title">
+                        <span class="board-stage-dot board-stage-precon"></span>
+                        <strong>Pre-Construction</strong>
+                      </div>
+                      <span class="snapshot-board-count">2</span>
+                    </div>
+                    <div class="snapshot-board-card is-rich thumb-midtown">
+                      <div class="snapshot-card-image"></div>
+                      <div class="snapshot-card-body">
+                        <p>Design Intake</p>
+                        <h3>Midtown Condo #4B</h3>
+                        <span>Budget: $62,000</span>
+                      </div>
+                    </div>
+                    <div class="snapshot-board-card is-rich thumb-decatur">
+                      <div class="snapshot-card-image"></div>
+                      <div class="snapshot-card-body">
+                        <p>Bidding Active</p>
+                        <h3>842 Decatur St</h3>
+                        <span>Budget: $118,000</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article class="snapshot-board-column">
+                    <div class="snapshot-board-header">
+                      <div class="snapshot-board-title">
+                        <span class="board-stage-dot board-stage-active"></span>
+                        <strong>Active Construction</strong>
+                      </div>
+                      <span class="snapshot-board-count">2</span>
+                    </div>
+                    <div class="snapshot-board-card is-rich thumb-oak">
+                      <div class="snapshot-card-image"></div>
+                      <div class="snapshot-card-body">
+                        <p>On Schedule</p>
+                        <h3>1679 Oak Ln</h3>
+                        <span>Spend: 57%</span>
+                      </div>
+                    </div>
+                    <div class="snapshot-board-card is-rich thumb-druid">
+                      <div class="snapshot-card-image"></div>
+                      <div class="snapshot-card-body">
+                        <p>On Schedule</p>
+                        <h3>North Druid Hills SFR</h3>
+                        <span>Spend: 65%</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article class="snapshot-board-column">
+                    <div class="snapshot-board-header">
+                      <div class="snapshot-board-title">
+                        <span class="board-stage-dot board-stage-listed"></span>
+                        <strong>Listed / Sold</strong>
+                      </div>
+                      <span class="snapshot-board-count">0</span>
+                    </div>
+                    <div class="snapshot-board-card snapshot-board-empty">
+                      <p>No active properties</p>
+                      <span>Add</span>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <div class="portfolio-view" data-portfolio-view="map" hidden>
+                <div class="portfolio-map">
+                  <div class="portfolio-map-legend">
+                    <strong>Legend</strong>
+                    <span><i class="board-stage-dot board-stage-underwriting"></i> Leads</span>
+                    <span><i class="board-stage-dot board-stage-precon"></i> Pre-Construction</span>
+                    <span><i class="board-stage-dot board-stage-active"></i> Construction</span>
+                    <span><i class="board-stage-dot board-stage-listed"></i> Listed / Sold</span>
+                  </div>
+
+                  <div class="portfolio-map-canvas">
+                    <span class="map-label map-label-midtown">Midtown</span>
+                    <span class="map-label map-label-east">East Atlanta</span>
+                    <span class="map-label map-label-druid">N. Druid Hills</span>
+                    <span class="map-label map-label-grant">Grant Park</span>
+
+                    <button class="map-pin map-pin-howell" type="button" aria-label="1022 Howell Mill Road">
+                      <span class="map-pin-dot board-stage-underwriting"></span>
+                    </button>
+                    <button class="map-pin map-pin-ponce" type="button" aria-label="1247 Ponce De Leon">
+                      <span class="map-pin-dot board-stage-underwriting"></span>
+                    </button>
+                    <button class="map-pin map-pin-midtown" type="button" aria-label="Midtown Condo #4B">
+                      <span class="map-pin-dot board-stage-precon"></span>
+                    </button>
+                    <button class="map-pin map-pin-decatur" type="button" aria-label="842 Decatur St">
+                      <span class="map-pin-dot board-stage-precon"></span>
+                    </button>
+                    <button class="map-pin map-pin-oak" type="button" aria-label="1679 Oak Ln">
+                      <span class="map-pin-dot board-stage-active"></span>
+                    </button>
+                    <button class="map-pin map-pin-druid" type="button" aria-label="North Druid Hills SFR">
+                      <span class="map-pin-dot board-stage-active"></span>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -463,6 +722,20 @@
             of room analysis, cost estimation, and AI-generated visualization in a
             simple user journey.
           </p>
+        </div>
+
+        <div class="showcase-banner reveal">
+          <div class="showcase-banner-copy">
+            <p class="eyebrow">Visual output</p>
+            <h3>Design choices and room-level decisions should be as visible as the numbers.</h3>
+            <p>
+              This section is set up for a strong interior image or render so the AI
+              examples feel more like a product story and less like a feature list.
+            </p>
+          </div>
+          <div class="showcase-banner-visual" aria-hidden="true">
+            <span>Kitchen or bathroom render image slot</span>
+          </div>
         </div>
 
         <div class="ai-journey reveal">

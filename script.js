@@ -2,6 +2,7 @@ const menuToggle = document.querySelector("[data-menu-toggle]");
 const mobileNav = document.querySelector("[data-mobile-nav]");
 const yearNode = document.querySelector("[data-year]");
 const revealItems = document.querySelectorAll(".reveal");
+const portfolioSnapshots = document.querySelectorAll(".portfolio-snapshot");
 
 if (yearNode) {
   yearNode.textContent = new Date().getFullYear();
@@ -39,3 +40,32 @@ const revealObserver = new IntersectionObserver(
 );
 
 revealItems.forEach((item) => revealObserver.observe(item));
+
+portfolioSnapshots.forEach((snapshot) => {
+  const tabs = snapshot.querySelectorAll("[data-portfolio-view-tab]");
+  const views = snapshot.querySelectorAll("[data-portfolio-view]");
+
+  if (!tabs.length || !views.length) {
+    return;
+  }
+
+  const setActiveView = (viewName) => {
+    tabs.forEach((tab) => {
+      const isActive = tab.dataset.portfolioViewTab === viewName;
+      tab.classList.toggle("is-active", isActive);
+      tab.setAttribute("aria-selected", String(isActive));
+    });
+
+    views.forEach((view) => {
+      const isActive = view.dataset.portfolioView === viewName;
+      view.classList.toggle("is-active", isActive);
+      view.hidden = !isActive;
+    });
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      setActiveView(tab.dataset.portfolioViewTab);
+    });
+  });
+});
