@@ -226,6 +226,60 @@ select {
   margin-inline: auto;
 }
 
+.hero-intro .hero-stacked-title {
+  display: grid;
+  gap: 0.55rem;
+  max-width: min(28rem, 100%);
+  margin-inline: auto;
+  font-size: 1rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.hero-stacked-kicker,
+.hero-stacked-word,
+.hero-stacked-bottom,
+.hero-stacked-divider {
+  display: block;
+}
+
+.hero-stacked-kicker {
+  color: var(--accent);
+  font-size: clamp(1.05rem, 2.2vw, 1.5rem);
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.92),
+    0 4px 12px rgba(0, 0, 0, 0.22);
+}
+
+.hero-stacked-word,
+.hero-stacked-bottom {
+  color: var(--ink-strong);
+  font-size: clamp(2.6rem, 7vw, 5.1rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.hero-stacked-bottom {
+  font-size: clamp(2.2rem, 5.8vw, 4.25rem);
+}
+
+.hero-stacked-divider {
+  width: min(20rem, 100%);
+  height: 2px;
+  margin: 0.08rem auto;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(13, 31, 51, 0.08),
+    rgba(13, 31, 51, 0.82) 22%,
+    rgba(13, 31, 51, 0.82) 78%,
+    rgba(13, 31, 51, 0.08)
+  );
+}
+
 .portfolio-overview-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
@@ -3057,6 +3111,10 @@ select {
     max-width: none;
   }
 
+  .hero-intro .hero-stacked-title {
+    max-width: min(24rem, 100%);
+  }
+
   .preview-header,
   .camera-panel-top,
   .cta-box {
@@ -3221,6 +3279,27 @@ select {
   .camera-copy h2,
   .cta-box h2 {
     font-size: clamp(2.05rem, 10vw, 2.65rem);
+  }
+
+  .hero-intro .hero-stacked-title {
+    gap: 0.42rem;
+  }
+
+  .hero-stacked-kicker {
+    font-size: 0.92rem;
+    letter-spacing: 0.13em;
+  }
+
+  .hero-stacked-word {
+    font-size: clamp(2.15rem, 11vw, 3rem);
+  }
+
+  .hero-stacked-bottom {
+    font-size: clamp(1.8rem, 9vw, 2.5rem);
+  }
+
+  .hero-stacked-divider {
+    width: min(15rem, 100%);
   }
 
   .preview-header h2 {
