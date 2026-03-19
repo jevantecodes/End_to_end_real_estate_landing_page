@@ -471,3 +471,140 @@ portfolioSnapshots.forEach((snapshot) => {
     applyPropertyState(propertyId, entry.stageKey, entry.status);
   });
 });
+
+const heroSection = document.querySelector(".hero-intro");
+const heroVideo = document.querySelector("[data-hero-video]");
+const heroCopy = document.querySelector("[data-hero-copy]");
+const heroScrollCue = document.querySelector(".hero-scroll-cue");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (heroVideo && prefersReducedMotion.matches) {
+  heroVideo.pause();
+}
+
+if (!prefersReducedMotion.matches && window.Lenis) {
+  const lenis = new window.Lenis({
+    lerp: 0.08,
+    smoothWheel: true,
+    syncTouch: true,
+    touchMultiplier: 1.05,
+  });
+
+  document.documentElement.classList.add("has-lenis");
+
+  lenis.on("scroll", () => {
+    if (window.ScrollTrigger) {
+      window.ScrollTrigger.update();
+    }
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      const targetId = anchor.getAttribute("href");
+
+      if (!targetId || targetId === "#") {
+        return;
+      }
+
+      const target = document.querySelector(targetId);
+
+      if (!target) {
+        return;
+      }
+
+      event.preventDefault();
+      lenis.scrollTo(target, {
+        duration: 1.1,
+        offset: -18,
+      });
+    });
+  });
+
+  const raf = (time) => {
+    lenis.raf(time);
+    window.requestAnimationFrame(raf);
+  };
+
+  window.requestAnimationFrame(raf);
+}
+
+if (!prefersReducedMotion.matches && heroSection && heroCopy && window.gsap) {
+  const heroMotionTargets = heroCopy.querySelectorAll(
+    ".eyebrow, .hero-stacked-kicker, .hero-stacked-divider, .hero-stacked-word, .hero-stacked-bottom, .hero-actions .button",
+  );
+
+  const introTimeline = window.gsap.timeline({
+    defaults: {
+      ease: "power3.out",
+    },
+  });
+
+  if (heroVideo) {
+    introTimeline.from(heroVideo, {
+      opacity: 0.28,
+      scale: 1.14,
+      duration: 1.8,
+      ease: "power2.out",
+    });
+  }
+
+  introTimeline.from(
+    heroMotionTargets,
+    {
+      opacity: 0,
+      y: 36,
+      duration: 0.95,
+      stagger: 0.08,
+    },
+    0.12,
+  );
+
+  if (heroScrollCue) {
+    introTimeline.from(
+      heroScrollCue,
+      {
+        opacity: 0,
+        y: 18,
+        duration: 0.75,
+      },
+      0.72,
+    );
+
+    window.gsap.to(heroScrollCue, {
+      y: 8,
+      duration: 1.8,
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true,
+    });
+  }
+
+  if (window.ScrollTrigger) {
+    window.gsap.registerPlugin(window.ScrollTrigger);
+
+    if (heroVideo) {
+      window.gsap.to(heroVideo, {
+        yPercent: 8,
+        scale: 1.09,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroSection,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    }
+
+    window.gsap.to(heroCopy, {
+      yPercent: -7,
+      ease: "none",
+      scrollTrigger: {
+        trigger: heroSection,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  }
+}

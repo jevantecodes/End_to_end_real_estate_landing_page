@@ -32,6 +32,10 @@ html {
   scroll-behavior: smooth;
 }
 
+html.has-lenis {
+  scroll-behavior: auto;
+}
+
 body {
   margin: 0;
   font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
@@ -204,15 +208,72 @@ select {
 }
 
 .hero-intro {
+  position: relative;
   grid-template-columns: 1fr;
-  gap: 2rem;
-  padding-top: 3rem;
+  gap: 1.5rem;
+  min-height: min(54rem, calc(100svh - 2rem));
+  padding: clamp(5rem, 8vw, 6.5rem) clamp(1.25rem, 4vw, 3rem) clamp(4rem, 8vw, 5rem);
+  border: 1px solid rgba(13, 31, 51, 0.08);
+  border-radius: 42px;
+  overflow: hidden;
+  align-items: end;
+  background: #13202e;
+  isolation: isolate;
+}
+
+.hero-video-shell,
+.hero-video-overlay,
+.hero-video-grid,
+.hero-video-fade {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-video-shell {
+  z-index: 0;
+}
+
+.hero-bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  filter: saturate(0.92) contrast(1.06) brightness(0.84);
+}
+
+.hero-video-overlay {
+  background:
+    linear-gradient(180deg, rgba(255, 247, 237, 0.24) 0%, rgba(255, 247, 237, 0.08) 18%, rgba(10, 18, 28, 0.18) 42%, rgba(10, 18, 28, 0.72) 100%),
+    linear-gradient(90deg, rgba(10, 18, 28, 0.48) 0%, rgba(10, 18, 28, 0.1) 36%, rgba(10, 18, 28, 0.52) 100%);
+}
+
+.hero-video-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 120px 120px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.26), transparent 86%);
+  opacity: 0.5;
+}
+
+.hero-video-fade {
+  top: auto;
+  height: 26%;
+  background: linear-gradient(180deg, rgba(251, 247, 240, 0) 0%, rgba(251, 247, 240, 0.86) 78%, rgba(251, 247, 240, 1) 100%);
 }
 
 .hero-intro .hero-copy {
-  max-width: 60rem;
+  position: relative;
+  z-index: 2;
+  max-width: min(54rem, 100%);
   margin: 0 auto;
   text-align: center;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255, 249, 242, 0.7), rgba(255, 249, 242, 0.34));
+  backdrop-filter: blur(16px);
+  box-shadow: 0 24px 80px rgba(5, 12, 20, 0.24);
 }
 
 .hero-intro .eyebrow {
@@ -479,6 +540,37 @@ select {
 .hero-intro .hero-actions {
   justify-content: center;
   margin-top: 1.55rem;
+}
+
+.hero-scroll-cue {
+  position: relative;
+  z-index: 2;
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(13, 31, 51, 0.34);
+  color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 34px rgba(5, 12, 20, 0.22);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-scroll-cue strong {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.hero-scroll-cue:hover,
+.hero-scroll-cue:focus-visible {
+  transform: translateY(-2px);
 }
 
 .hero-context {
@@ -3089,6 +3181,11 @@ select {
     padding-top: 3.75rem;
   }
 
+  .hero-intro {
+    min-height: min(48rem, calc(100svh - 1.5rem));
+    padding: 4.5rem 1.4rem 3.8rem;
+  }
+
   .portfolio-overview-layout {
     gap: 1.8rem;
   }
@@ -3142,6 +3239,17 @@ select {
 
   .hero-intro .hero-stacked-title {
     max-width: min(24rem, 100%);
+  }
+
+  .hero-intro .hero-copy {
+    padding: 1.2rem;
+  }
+
+  .hero-scroll-cue {
+    min-height: 2.7rem;
+    padding: 0.62rem 0.92rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
   }
 
   .preview-header,
@@ -3314,6 +3422,17 @@ select {
     gap: 0.42rem;
   }
 
+  .hero-intro {
+    min-height: min(40rem, calc(100svh - 1rem));
+    padding: 3.8rem 0.9rem 3rem;
+    border-radius: 30px;
+  }
+
+  .hero-intro .hero-copy {
+    padding: 0.95rem;
+    border-radius: 22px;
+  }
+
   .hero-stacked-kicker,
   .hero-stacked-word,
   .hero-stacked-bottom {
@@ -3322,6 +3441,12 @@ select {
 
   .hero-stacked-divider {
     width: min(15rem, 100%);
+  }
+
+  .hero-scroll-cue {
+    min-height: 2.45rem;
+    padding: 0.56rem 0.84rem;
+    font-size: 0.66rem;
   }
 
   .preview-header h2 {
