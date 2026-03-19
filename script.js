@@ -44,6 +44,7 @@ revealItems.forEach((item) => revealObserver.observe(item));
 portfolioSnapshots.forEach((snapshot) => {
   const tabs = snapshot.querySelectorAll("[data-portfolio-view-tab]");
   const views = snapshot.querySelectorAll("[data-portfolio-view]");
+  const boardColumns = snapshot.querySelectorAll("[data-board-column]");
 
   if (!tabs.length || !views.length) {
     return;
@@ -68,4 +69,124 @@ portfolioSnapshots.forEach((snapshot) => {
       setActiveView(tab.dataset.portfolioViewTab);
     });
   });
+
+  if (!boardColumns.length) {
+    return;
+  }
+
+  const updateBoardColumns = () => {
+    boardColumns.forEach((column) => {
+      const lane = column.querySelector("[data-board-lane]");
+      const countNode = column.querySelector("[data-board-count]");
+      const emptyNode = lane?.querySelector("[data-board-empty]");
+      const cards = lane?.querySelectorAll("[data-board-card]") ?? [];
+
+      if (countNode) {
+        countNode.textContent = String(cards.length);
+      }
+
+      if (emptyNode) {
+        emptyNode.hidden = cards.length > 0;
+      }
+    });
+  };
+
+  const setCardTheme = (card, lane) => {
+    const theme = lane.closest("[data-board-column]")?.dataset.boardTheme;
+    const bubbleClasses = [
+      "bubble-underwriting",
+      "bubble-escrow",
+      "bubble-precon",
+      "bubble-active",
+      "bubble-listed",
+    ];
+
+    card.classList.remove(...bubbleClasses);
+
+    if (theme) {
+      card.classList.add(`bubble-${theme}`);
+    }
+  };
+
+  const getDragAfterElement = (lane, clientY) => {
+    const candidates = [...lane.querySelectorAll("[data-board-card]:not(.is-dragging)")];
+
+    return candidates.reduce(
+      (closest, card) => {
+        const box = card.getBoundingClientRect();
+        const offset = clientY - box.top - box.height / 2;
+
+        if (offset < 0 && offset > closest.offset) {
+          return { offset, element: card };
+        }
+
+        return closest;
+      },
+      { offset: Number.NEGATIVE_INFINITY, element: null },
+    ).element;
+  };
+
+  const cards = snapshot.querySelectorAll("[data-board-card]");
+  const lanes = snapshot.querySelectorAll("[data-board-lane]");
+
+  cards.forEach((card) => {
+    card.addEventListener("dragstart", (event) => {
+      card.classList.add("is-dragging");
+      if (event.dataTransfer) {
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData("text/plain", card.querySelector("h3")?.textContent ?? "");
+      }
+    });
+
+    card.addEventListener("dragend", () => {
+      card.classList.remove("is-dragging");
+      lanes.forEach((lane) => lane.classList.remove("is-over"));
+      updateBoardColumns();
+    });
+  });
+
+  lanes.forEach((lane) => {
+    lane.addEventListener("dragenter", (event) => {
+      event.preventDefault();
+      lane.classList.add("is-over");
+    });
+
+    lane.addEventListener("dragover", (event) => {
+      event.preventDefault();
+      const activeCard = snapshot.querySelector(".is-dragging");
+
+      if (!activeCard) {
+        return;
+      }
+
+      const afterElement = getDragAfterElement(lane, event.clientY);
+      const emptyNode = lane.querySelector("[data-board-empty]");
+
+      if (afterElement) {
+        lane.insertBefore(activeCard, afterElement);
+      } else if (emptyNode) {
+        lane.insertBefore(activeCard, emptyNode);
+      } else {
+        lane.appendChild(activeCard);
+      }
+
+      setCardTheme(activeCard, lane);
+    });
+
+    lane.addEventListener("dragleave", (event) => {
+      if (event.relatedTarget instanceof Node && lane.contains(event.relatedTarget)) {
+        return;
+      }
+
+      lane.classList.remove("is-over");
+    });
+
+    lane.addEventListener("drop", (event) => {
+      event.preventDefault();
+      lane.classList.remove("is-over");
+      updateBoardColumns();
+    });
+  });
+
+  updateBoardColumns();
 });

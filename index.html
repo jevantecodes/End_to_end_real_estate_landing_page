@@ -399,25 +399,29 @@
 
               <div class="portfolio-view is-active" data-portfolio-view="kanban">
                 <div class="snapshot-board">
-                  <article class="snapshot-board-column">
+                  <article class="snapshot-board-column" data-board-column data-board-theme="underwriting">
                     <div class="snapshot-board-header">
                       <div class="snapshot-board-title">
                         <span class="board-stage-dot board-stage-underwriting"></span>
                         <strong>Leads / Underwriting</strong>
                       </div>
-                      <span class="snapshot-board-count">2</span>
+                      <span class="snapshot-board-count" data-board-count>2</span>
                     </div>
-                    <div class="snapshot-board-card is-rich thumb-howell">
-                      <div class="snapshot-card-image"></div>
-                      <div class="snapshot-card-body">
+                    <div class="snapshot-board-lane" data-board-lane data-empty-label="No underwriting properties">
+                      <div
+                        class="snapshot-board-card snapshot-board-bubble bubble-underwriting"
+                        draggable="true"
+                        data-board-card
+                      >
                         <p>Under Review</p>
                         <h3>1022 Howell Mill Road</h3>
                         <span>Budget: $20,000</span>
                       </div>
-                    </div>
-                    <div class="snapshot-board-card is-rich thumb-ponce">
-                      <div class="snapshot-card-image"></div>
-                      <div class="snapshot-card-body">
+                      <div
+                        class="snapshot-board-card snapshot-board-bubble bubble-underwriting"
+                        draggable="true"
+                        data-board-card
+                      >
                         <p>Under Review</p>
                         <h3>1247 Ponce De Leon</h3>
                         <span>Budget: $95,000</span>
@@ -425,39 +429,44 @@
                     </div>
                   </article>
 
-                  <article class="snapshot-board-column">
+                  <article class="snapshot-board-column" data-board-column data-board-theme="escrow">
                     <div class="snapshot-board-header">
                       <div class="snapshot-board-title">
                         <span class="board-stage-dot board-stage-escrow"></span>
                         <strong>Under Contract / Escrow</strong>
                       </div>
-                      <span class="snapshot-board-count">0</span>
+                      <span class="snapshot-board-count" data-board-count>0</span>
                     </div>
-                    <div class="snapshot-board-card snapshot-board-empty">
-                      <p>No active escrows</p>
-                      <span>Add</span>
+                    <div class="snapshot-board-lane" data-board-lane data-empty-label="No active escrows">
+                      <div class="snapshot-board-card snapshot-board-empty" data-board-empty>
+                        <p>No active escrows</p>
+                      </div>
                     </div>
                   </article>
 
-                  <article class="snapshot-board-column">
+                  <article class="snapshot-board-column" data-board-column data-board-theme="precon">
                     <div class="snapshot-board-header">
                       <div class="snapshot-board-title">
                         <span class="board-stage-dot board-stage-precon"></span>
                         <strong>Pre-Construction</strong>
                       </div>
-                      <span class="snapshot-board-count">2</span>
+                      <span class="snapshot-board-count" data-board-count>2</span>
                     </div>
-                    <div class="snapshot-board-card is-rich thumb-midtown">
-                      <div class="snapshot-card-image"></div>
-                      <div class="snapshot-card-body">
+                    <div class="snapshot-board-lane" data-board-lane data-empty-label="No pre-construction properties">
+                      <div
+                        class="snapshot-board-card snapshot-board-bubble bubble-precon"
+                        draggable="true"
+                        data-board-card
+                      >
                         <p>Design Intake</p>
                         <h3>Midtown Condo #4B</h3>
                         <span>Budget: $62,000</span>
                       </div>
-                    </div>
-                    <div class="snapshot-board-card is-rich thumb-decatur">
-                      <div class="snapshot-card-image"></div>
-                      <div class="snapshot-card-body">
+                      <div
+                        class="snapshot-board-card snapshot-board-bubble bubble-precon"
+                        draggable="true"
+                        data-board-card
+                      >
                         <p>Bidding Active</p>
                         <h3>842 Decatur St</h3>
                         <span>Budget: $118,000</span>
@@ -465,25 +474,29 @@
                     </div>
                   </article>
 
-                  <article class="snapshot-board-column">
+                  <article class="snapshot-board-column" data-board-column data-board-theme="active">
                     <div class="snapshot-board-header">
                       <div class="snapshot-board-title">
                         <span class="board-stage-dot board-stage-active"></span>
                         <strong>Active Construction</strong>
                       </div>
-                      <span class="snapshot-board-count">2</span>
+                      <span class="snapshot-board-count" data-board-count>2</span>
                     </div>
-                    <div class="snapshot-board-card is-rich thumb-oak">
-                      <div class="snapshot-card-image"></div>
-                      <div class="snapshot-card-body">
+                    <div class="snapshot-board-lane" data-board-lane data-empty-label="No active construction properties">
+                      <div
+                        class="snapshot-board-card snapshot-board-bubble bubble-active"
+                        draggable="true"
+                        data-board-card
+                      >
                         <p>On Schedule</p>
                         <h3>1679 Oak Ln</h3>
                         <span>Spend: 57%</span>
                       </div>
-                    </div>
-                    <div class="snapshot-board-card is-rich thumb-druid">
-                      <div class="snapshot-card-image"></div>
-                      <div class="snapshot-card-body">
+                      <div
+                        class="snapshot-board-card snapshot-board-bubble bubble-active"
+                        draggable="true"
+                        data-board-card
+                      >
                         <p>On Schedule</p>
                         <h3>North Druid Hills SFR</h3>
                         <span>Spend: 65%</span>
@@ -491,17 +504,18 @@
                     </div>
                   </article>
 
-                  <article class="snapshot-board-column">
+                  <article class="snapshot-board-column" data-board-column data-board-theme="listed">
                     <div class="snapshot-board-header">
                       <div class="snapshot-board-title">
                         <span class="board-stage-dot board-stage-listed"></span>
                         <strong>Listed / Sold</strong>
                       </div>
-                      <span class="snapshot-board-count">0</span>
+                      <span class="snapshot-board-count" data-board-count>0</span>
                     </div>
-                    <div class="snapshot-board-card snapshot-board-empty">
-                      <p>No active properties</p>
-                      <span>Add</span>
+                    <div class="snapshot-board-lane" data-board-lane data-empty-label="No active properties">
+                      <div class="snapshot-board-card snapshot-board-empty" data-board-empty>
+                        <p>No active properties</p>
+                      </div>
                     </div>
                   </article>
                 </div>
