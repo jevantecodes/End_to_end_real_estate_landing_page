@@ -1715,6 +1715,14 @@ select {
   font-size: 1.05rem;
 }
 
+.outcome-lead {
+  margin: 0.55rem 0 0.9rem;
+  color: var(--ink-strong);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
 .board-columns ul,
 .check-list {
   margin: 1rem 0 0;
@@ -2041,6 +2049,10 @@ select {
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: 1.4rem;
   margin-top: 2.5rem;
+}
+
+.problem-layout-single {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .problem-system {
