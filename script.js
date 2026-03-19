@@ -473,14 +473,16 @@ portfolioSnapshots.forEach((snapshot) => {
 });
 
 const heroSection = document.querySelector(".hero-intro");
+const heroVideoShell = document.querySelector(".hero-video-shell");
 const heroVideo = document.querySelector("[data-hero-video]");
 const heroCopy = document.querySelector("[data-hero-copy]");
 const heroScrollCue = document.querySelector(".hero-scroll-cue");
 const heroCaption = document.querySelector(".hero-video-caption");
 const heroCaptionText = document.querySelector("[data-hero-caption-text]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const isTouchViewport = window.matchMedia("(pointer: coarse), (max-width: 820px)").matches;
 let queueHeroVideoProgressUpdate = () => {};
-const heroCaptionMessage = "Every property begins with scattered data.";
+const heroCaptionMessage = "Every deal begins with scattered information.";
 
 const updateHeroCaption = (currentTime = 0) => {
   if (!heroCaption || !heroCaptionText) {
@@ -528,7 +530,8 @@ const syncHeroVideoToScroll = () => {
     }
 
     const sectionRect = heroSection.getBoundingClientRect();
-    const scrollSpan = Math.max(heroSection.offsetHeight - window.innerHeight, 1);
+    const shellHeight = heroVideoShell?.offsetHeight || window.innerHeight;
+    const scrollSpan = Math.max(heroSection.offsetHeight - shellHeight, 1);
     const progress = Math.min(Math.max((-sectionRect.top) / scrollSpan, 0), 1);
     const targetTime = progress * scrubDuration;
 
@@ -622,7 +625,7 @@ if (prefersReducedMotion.matches) {
 
 syncHeroVideoToScroll();
 
-if (!prefersReducedMotion.matches && window.Lenis) {
+if (!prefersReducedMotion.matches && window.Lenis && !isTouchViewport) {
   const lenis = new window.Lenis({
     lerp: 0.08,
     smoothWheel: true,

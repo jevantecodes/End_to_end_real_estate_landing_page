@@ -3180,8 +3180,15 @@ select {
   }
 
   .hero-intro {
-    min-height: 210vh;
+    min-height: 165vh;
     padding: 0.85rem;
+  }
+
+  .hero-video-shell {
+    top: 0.75rem;
+    min-height: auto;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 
   .portfolio-overview-layout {
@@ -3405,7 +3412,7 @@ select {
   }
 
   .hero-intro {
-    min-height: 185vh;
+    min-height: 145vh;
     padding: 0.65rem;
     border-radius: 30px;
   }
@@ -3413,8 +3420,9 @@ select {
   .hero-video-shell {
     top: 0.45rem;
     border-radius: 22px;
-    min-height: calc(100svh - 1.3rem);
-    height: calc(100svh - 1.3rem);
+    min-height: auto;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 
   .hero-video-caption {
