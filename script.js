@@ -632,11 +632,7 @@ if (!prefersReducedMotion.matches && window.Lenis) {
   window.requestAnimationFrame(raf);
 }
 
-if (!prefersReducedMotion.matches && heroSection && heroCopy && window.gsap) {
-  const heroMotionTargets = heroCopy.querySelectorAll(
-    ".eyebrow, .hero-stacked-kicker, .hero-stacked-divider, .hero-stacked-word, .hero-stacked-bottom, .hero-actions .button",
-  );
-
+if (!prefersReducedMotion.matches && heroSection && window.gsap) {
   const introTimeline = window.gsap.timeline({
     defaults: {
       ease: "power3.out",
@@ -652,16 +648,22 @@ if (!prefersReducedMotion.matches && heroSection && heroCopy && window.gsap) {
     });
   }
 
-  introTimeline.from(
-    heroMotionTargets,
-    {
-      opacity: 0,
-      y: 36,
-      duration: 0.95,
-      stagger: 0.08,
-    },
-    0.12,
-  );
+  if (heroCopy) {
+    const heroMotionTargets = heroCopy.querySelectorAll(
+      ".eyebrow, .hero-stacked-kicker, .hero-stacked-divider, .hero-stacked-word, .hero-stacked-bottom, .hero-actions .button",
+    );
+
+    introTimeline.from(
+      heroMotionTargets,
+      {
+        opacity: 0,
+        y: 36,
+        duration: 0.95,
+        stagger: 0.08,
+      },
+      0.12,
+    );
+  }
 
   if (heroScrollCue) {
     introTimeline.from(
@@ -686,15 +688,17 @@ if (!prefersReducedMotion.matches && heroSection && heroCopy && window.gsap) {
   if (window.ScrollTrigger) {
     window.gsap.registerPlugin(window.ScrollTrigger);
 
-    window.gsap.to(heroCopy, {
-      yPercent: -7,
-      ease: "none",
-      scrollTrigger: {
-        trigger: heroSection,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
+    if (heroCopy) {
+      window.gsap.to(heroCopy, {
+        yPercent: -7,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroSection,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    }
   }
 }
