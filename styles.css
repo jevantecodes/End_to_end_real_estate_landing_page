@@ -2140,13 +2140,39 @@ select {
 }
 
 .problem-input-cloud {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  display: block;
   background:
     linear-gradient(180deg, rgba(255, 248, 241, 0.96), rgba(243, 232, 217, 0.92));
   padding: 0.9rem;
   border-radius: 22px;
+  overflow: hidden;
+}
+
+.problem-radial-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.problem-radial-center-line {
+  fill: #ffffff;
+  font-size: 2.75rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  paint-order: stroke fill;
+  stroke: rgba(125, 29, 0, 0.4);
+  stroke-width: 8px;
+}
+
+.problem-radial-label {
+  fill: #1c1c1c;
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.problem-radial-icon-group {
+  filter: drop-shadow(0 10px 16px rgba(13, 31, 51, 0.08));
 }
 
 .problem-card-chip {
@@ -3405,9 +3431,13 @@ select {
     border-radius: 18px;
   }
 
-  .problem-input-cloud,
-  .problem-record-grid {
-    grid-template-columns: 1fr;
+  .problem-radial-center-line {
+    font-size: 2.2rem;
+    stroke-width: 6px;
+  }
+
+  .problem-radial-label {
+    font-size: 0.92rem;
   }
 
   .problem-record-header {
@@ -3668,5 +3698,20 @@ select {
   .snapshot-mini-card strong {
     margin-top: 0.42rem;
     font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .problem-input-cloud {
+    padding: 0.45rem;
+  }
+
+  .problem-radial-center-line {
+    font-size: 1.62rem;
+    stroke-width: 4px;
+  }
+
+  .problem-radial-label {
+    font-size: 0.74rem;
   }
 }
