@@ -689,8 +689,8 @@ select {
 }
 
 .snapshot-progress {
-  display: grid;
-  grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
+  display: flex;
+  align-items: stretch;
   gap: 0.28rem;
   padding: 0.24rem;
   border-radius: 999px;
@@ -700,7 +700,11 @@ select {
 .snapshot-progress-segment {
   display: block;
   height: 0.44rem;
+  flex: 0 1 0;
   border-radius: 999px;
+  transition:
+    flex-grow 220ms ease,
+    opacity 220ms ease;
 }
 
 .snapshot-progress-underwriting {

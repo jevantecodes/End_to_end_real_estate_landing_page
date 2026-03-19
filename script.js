@@ -98,15 +98,15 @@ portfolioSnapshots.forEach((snapshot) => {
     },
     active: {
       label: "Active Construction",
-      defaultStatus: "On Schedule",
-      statuses: ["On Schedule"],
+      defaultStatus: "Active Construction",
+      statuses: ["Active Construction"],
       bubbleClass: "bubble-active",
       dotClass: "board-stage-active",
     },
     listed: {
       label: "Listed / Sold",
-      defaultStatus: "Listed",
-      statuses: ["Listed", "Sold"],
+      defaultStatus: "Listed / Sold",
+      statuses: ["Listed / Sold"],
       bubbleClass: "bubble-listed",
       dotClass: "board-stage-listed",
     },
@@ -122,9 +122,8 @@ portfolioSnapshots.forEach((snapshot) => {
     "In Escrow": "portfolio-status-escrow",
     "Design Intake": "portfolio-status-neutral",
     "Bidding Active": "portfolio-status-warning",
-    "On Schedule": "portfolio-status-success",
-    Listed: "portfolio-status-listed",
-    Sold: "portfolio-status-listed",
+    "Active Construction": "portfolio-status-success",
+    "Listed / Sold": "portfolio-status-listed",
   };
 
   stageOrder.forEach((stageKey) => {
@@ -300,9 +299,13 @@ portfolioSnapshots.forEach((snapshot) => {
     });
 
     if (progressBar) {
-      progressBar.style.gridTemplateColumns = stageOrder
-        .map((stageKey) => `${Math.max(counts[stageKey] ?? 0, 0.35)}fr`)
-        .join(" ");
+      stageOrder.forEach((stageKey) => {
+        const segment = progressSegments.get(stageKey);
+
+        if (segment) {
+          segment.style.flexGrow = String(counts[stageKey] ?? 0);
+        }
+      });
     }
 
     progressSegments.forEach((segment, stageKey) => {
