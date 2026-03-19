@@ -639,6 +639,7 @@ select {
   display: grid;
   gap: 0.9rem;
   margin-top: 1rem;
+  min-width: 0;
 }
 
 .snapshot-topbar,
@@ -728,15 +729,15 @@ select {
 
 .portfolio-view.is-active {
   display: block;
+  min-width: 0;
 }
 
 .snapshot-board {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(14rem, 1fr));
+  display: flex;
   gap: 0.8rem;
   scroll-margin-top: 7rem;
-  overflow-x: auto;
-  padding-bottom: 0.2rem;
+  width: max-content;
+  min-width: 100%;
 }
 
 .snapshot-board-column,
@@ -748,7 +749,22 @@ select {
 }
 
 .snapshot-board-column {
+  flex: 0 0 15.25rem;
   padding: 0.82rem;
+}
+
+.portfolio-view[data-portfolio-view="kanban"] {
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+  touch-action: pan-x;
+}
+
+.snapshot-board-column {
+  scroll-snap-align: start;
 }
 
 .snapshot-board-header,
@@ -2956,8 +2972,8 @@ select {
     font-size: 0.72rem;
   }
 
-  .snapshot-board {
-    grid-template-columns: repeat(5, minmax(13rem, 1fr));
+  .snapshot-board-column {
+    flex-basis: 14rem;
   }
 
   .snapshot-focus {
@@ -3160,6 +3176,10 @@ select {
     border-radius: 20px;
   }
 
+  .portfolio-board-section .preview-window {
+    overflow: visible;
+  }
+
   .preview-window::before {
     display: none;
   }
@@ -3183,6 +3203,7 @@ select {
   }
 
   .snapshot-board-column {
+    flex-basis: 13.75rem;
     padding: 0.7rem;
   }
 
