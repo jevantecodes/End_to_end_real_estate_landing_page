@@ -253,13 +253,6 @@ select {
   text-transform: uppercase;
 }
 
-.hero-stacked-kicker {
-  color: var(--accent);
-  text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.92),
-    0 4px 12px rgba(0, 0, 0, 0.22);
-}
-
 .hero-stacked-bottom {
   font-size: clamp(2.6rem, 7vw, 5.1rem);
 }
