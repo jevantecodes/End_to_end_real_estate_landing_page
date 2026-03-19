@@ -480,20 +480,34 @@ const heroCaption = document.querySelector(".hero-video-caption");
 const heroCaptionText = document.querySelector("[data-hero-caption-text]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let queueHeroVideoProgressUpdate = () => {};
-const heroCaptionMessage =
-  "When we are investing in a property, there can be a lot of scattered information";
+const heroCaptionMessage = "Every property deal starts with scattered information.";
 
 const updateHeroCaption = (currentTime = 0) => {
   if (!heroCaption || !heroCaptionText) {
     return;
   }
 
-  const startTime = 4;
-  const typingDuration = 2.8;
-  const progress = Math.min(Math.max((currentTime - startTime) / typingDuration, 0), 1);
-  const visibleCharacters = Math.round(heroCaptionMessage.length * progress);
+  const visibleWindowEnd = 4;
+  const typingStart = 0.2;
+  const typingDuration = 1.55;
+  const fadeStart = 3.15;
+  const fadeDuration = 0.7;
+  const typingProgress = Math.min(
+    Math.max((currentTime - typingStart) / typingDuration, 0),
+    1,
+  );
+  const visibleCharacters = Math.round(heroCaptionMessage.length * typingProgress);
+  const opacity =
+    currentTime <= typingStart
+      ? 0
+      : currentTime < fadeStart
+        ? 1
+        : currentTime < visibleWindowEnd
+          ? 1 - Math.min((currentTime - fadeStart) / fadeDuration, 1)
+          : 0;
 
-  heroCaption.classList.toggle("is-visible", visibleCharacters > 0);
+  heroCaption.classList.toggle("is-visible", opacity > 0.01 && visibleCharacters > 0);
+  heroCaption.style.opacity = String(opacity);
   heroCaptionText.textContent = heroCaptionMessage.slice(0, visibleCharacters);
 };
 

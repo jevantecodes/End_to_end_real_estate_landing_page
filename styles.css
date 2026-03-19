@@ -230,8 +230,8 @@ select {
   position: sticky;
   top: clamp(0.7rem, 1.5vw, 1.15rem);
   width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: calc(100svh - 2rem);
+  min-height: calc(100svh - 2rem);
+  height: calc(100svh - 2rem);
   border-radius: 34px;
   overflow: hidden;
   background: #111826;
@@ -3413,6 +3413,8 @@ select {
   .hero-video-shell {
     top: 0.45rem;
     border-radius: 22px;
+    min-height: calc(100svh - 1.3rem);
+    height: calc(100svh - 1.3rem);
   }
 
   .hero-video-caption {
