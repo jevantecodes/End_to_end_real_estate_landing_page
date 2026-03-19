@@ -1093,6 +1093,49 @@ select {
   background: #19c37d;
 }
 
+.portfolio-status-escrow::before {
+  background: #5961d8;
+}
+
+.portfolio-status-listed::before {
+  background: #59a0ff;
+}
+
+.portfolio-status-control {
+  position: relative;
+  min-width: 0;
+  padding-right: 0.9rem;
+}
+
+.portfolio-status-control::after {
+  content: "▾";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  color: inherit;
+  font-size: 0.66rem;
+  pointer-events: none;
+}
+
+.portfolio-status-select {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  color: var(--ink);
+  background: transparent;
+  font-size: 0.78rem;
+  font-weight: 800;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.portfolio-status-select:focus {
+  outline: none;
+}
+
 .portfolio-map {
   border-radius: 24px;
   border: 1px solid rgba(13, 31, 51, 0.06);

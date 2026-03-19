@@ -280,11 +280,11 @@
               </div>
 
               <div class="snapshot-progress" aria-hidden="true">
-                <span class="snapshot-progress-segment snapshot-progress-underwriting"></span>
-                <span class="snapshot-progress-segment snapshot-progress-escrow"></span>
-                <span class="snapshot-progress-segment snapshot-progress-precon"></span>
-                <span class="snapshot-progress-segment snapshot-progress-active"></span>
-                <span class="snapshot-progress-segment snapshot-progress-listed"></span>
+                <span class="snapshot-progress-segment snapshot-progress-underwriting" data-progress-stage="underwriting"></span>
+                <span class="snapshot-progress-segment snapshot-progress-escrow" data-progress-stage="escrow"></span>
+                <span class="snapshot-progress-segment snapshot-progress-precon" data-progress-stage="precon"></span>
+                <span class="snapshot-progress-segment snapshot-progress-active" data-progress-stage="active"></span>
+                <span class="snapshot-progress-segment snapshot-progress-listed" data-progress-stage="listed"></span>
               </div>
 
               <div class="portfolio-view" data-portfolio-view="list" hidden>
@@ -299,7 +299,7 @@
                     <span>Days</span>
                   </div>
 
-                  <article class="portfolio-list-row">
+                  <article class="portfolio-list-row" data-property="howell">
                     <div class="portfolio-list-property">
                       <span class="portfolio-list-thumb thumb-howell"></span>
                       <div>
@@ -307,15 +307,15 @@
                         <p>Atlanta, GA 30300 • Single Family</p>
                       </div>
                     </div>
-                    <span>Leads / Underwriting</span>
-                    <span class="portfolio-status-dot portfolio-status-neutral">Under Review</span>
+                    <span data-stage-cell>Leads / Underwriting</span>
+                    <span class="portfolio-status-dot portfolio-status-neutral" data-status-cell>Under Review</span>
                     <strong>$20,000</strong>
                     <span>$0</span>
                     <span>—</span>
                     <span>5d</span>
                   </article>
 
-                  <article class="portfolio-list-row">
+                  <article class="portfolio-list-row" data-property="ponce">
                     <div class="portfolio-list-property">
                       <span class="portfolio-list-thumb thumb-ponce"></span>
                       <div>
@@ -323,15 +323,15 @@
                         <p>Atlanta, GA 30306 • SFR</p>
                       </div>
                     </div>
-                    <span>Leads / Underwriting</span>
-                    <span class="portfolio-status-dot portfolio-status-neutral">Under Review</span>
+                    <span data-stage-cell>Leads / Underwriting</span>
+                    <span class="portfolio-status-dot portfolio-status-neutral" data-status-cell>Under Review</span>
                     <strong>$95,000</strong>
                     <span>$0</span>
                     <span>17.2%</span>
                     <span>19d</span>
                   </article>
 
-                  <article class="portfolio-list-row">
+                  <article class="portfolio-list-row" data-property="midtown">
                     <div class="portfolio-list-property">
                       <span class="portfolio-list-thumb thumb-midtown"></span>
                       <div>
@@ -339,15 +339,15 @@
                         <p>Atlanta, GA 30309 • Condo</p>
                       </div>
                     </div>
-                    <span>Pre-Construction</span>
-                    <span class="portfolio-status-dot portfolio-status-neutral">Design Intake</span>
+                    <span data-stage-cell>Pre-Construction</span>
+                    <span class="portfolio-status-dot portfolio-status-neutral" data-status-cell>Design Intake</span>
                     <strong>$62,000</strong>
                     <span>$0</span>
                     <span>24.8%</span>
                     <span>58d</span>
                   </article>
 
-                  <article class="portfolio-list-row">
+                  <article class="portfolio-list-row" data-property="decatur">
                     <div class="portfolio-list-property">
                       <span class="portfolio-list-thumb thumb-decatur"></span>
                       <div>
@@ -355,15 +355,15 @@
                         <p>Decatur, GA 30030 • SFR</p>
                       </div>
                     </div>
-                    <span>Pre-Construction</span>
-                    <span class="portfolio-status-dot portfolio-status-warning">Bidding Active</span>
+                    <span data-stage-cell>Pre-Construction</span>
+                    <span class="portfolio-status-dot portfolio-status-warning" data-status-cell>Bidding Active</span>
                     <strong>$118,000</strong>
                     <span>$4,200</span>
                     <span>19.1%</span>
                     <span>94d</span>
                   </article>
 
-                  <article class="portfolio-list-row">
+                  <article class="portfolio-list-row" data-property="oak">
                     <div class="portfolio-list-property">
                       <span class="portfolio-list-thumb thumb-oak"></span>
                       <div>
@@ -371,15 +371,15 @@
                         <p>Atlanta, GA 30316 • SFR</p>
                       </div>
                     </div>
-                    <span>Active Construction</span>
-                    <span class="portfolio-status-dot portfolio-status-success">On Schedule</span>
+                    <span data-stage-cell>Active Construction</span>
+                    <span class="portfolio-status-dot portfolio-status-success" data-status-cell>On Schedule</span>
                     <strong>$145,000</strong>
                     <span>$82,400</span>
                     <span>22.4%</span>
                     <span>169d</span>
                   </article>
 
-                  <article class="portfolio-list-row">
+                  <article class="portfolio-list-row" data-property="druid">
                     <div class="portfolio-list-property">
                       <span class="portfolio-list-thumb thumb-druid"></span>
                       <div>
@@ -387,8 +387,8 @@
                         <p>Atlanta, GA 30329 • SFR</p>
                       </div>
                     </div>
-                    <span>Active Construction</span>
-                    <span class="portfolio-status-dot portfolio-status-success">On Schedule</span>
+                    <span data-stage-cell>Active Construction</span>
+                    <span class="portfolio-status-dot portfolio-status-success" data-status-cell>On Schedule</span>
                     <strong>$132,000</strong>
                     <span>$85,800</span>
                     <span>20.1%</span>
@@ -412,8 +412,9 @@
                         class="snapshot-board-card snapshot-board-bubble bubble-underwriting"
                         draggable="true"
                         data-board-card
+                        data-property="howell"
                       >
-                        <p>Under Review</p>
+                        <p data-card-status>Under Review</p>
                         <h3>1022 Howell Mill Road</h3>
                         <span>Budget: $20,000</span>
                       </div>
@@ -421,8 +422,9 @@
                         class="snapshot-board-card snapshot-board-bubble bubble-underwriting"
                         draggable="true"
                         data-board-card
+                        data-property="ponce"
                       >
-                        <p>Under Review</p>
+                        <p data-card-status>Under Review</p>
                         <h3>1247 Ponce De Leon</h3>
                         <span>Budget: $95,000</span>
                       </div>
@@ -457,8 +459,9 @@
                         class="snapshot-board-card snapshot-board-bubble bubble-precon"
                         draggable="true"
                         data-board-card
+                        data-property="midtown"
                       >
-                        <p>Design Intake</p>
+                        <p data-card-status>Design Intake</p>
                         <h3>Midtown Condo #4B</h3>
                         <span>Budget: $62,000</span>
                       </div>
@@ -466,8 +469,9 @@
                         class="snapshot-board-card snapshot-board-bubble bubble-precon"
                         draggable="true"
                         data-board-card
+                        data-property="decatur"
                       >
-                        <p>Bidding Active</p>
+                        <p data-card-status>Bidding Active</p>
                         <h3>842 Decatur St</h3>
                         <span>Budget: $118,000</span>
                       </div>
@@ -487,8 +491,9 @@
                         class="snapshot-board-card snapshot-board-bubble bubble-active"
                         draggable="true"
                         data-board-card
+                        data-property="oak"
                       >
-                        <p>On Schedule</p>
+                        <p data-card-status>On Schedule</p>
                         <h3>1679 Oak Ln</h3>
                         <span>Spend: 57%</span>
                       </div>
@@ -496,8 +501,9 @@
                         class="snapshot-board-card snapshot-board-bubble bubble-active"
                         draggable="true"
                         data-board-card
+                        data-property="druid"
                       >
-                        <p>On Schedule</p>
+                        <p data-card-status>On Schedule</p>
                         <h3>North Druid Hills SFR</h3>
                         <span>Spend: 65%</span>
                       </div>
@@ -537,22 +543,22 @@
                     <span class="map-label map-label-druid">N. Druid Hills</span>
                     <span class="map-label map-label-grant">Grant Park</span>
 
-                    <button class="map-pin map-pin-howell" type="button" aria-label="1022 Howell Mill Road">
+                    <button class="map-pin map-pin-howell" type="button" aria-label="1022 Howell Mill Road" data-property="howell">
                       <span class="map-pin-dot board-stage-underwriting"></span>
                     </button>
-                    <button class="map-pin map-pin-ponce" type="button" aria-label="1247 Ponce De Leon">
+                    <button class="map-pin map-pin-ponce" type="button" aria-label="1247 Ponce De Leon" data-property="ponce">
                       <span class="map-pin-dot board-stage-underwriting"></span>
                     </button>
-                    <button class="map-pin map-pin-midtown" type="button" aria-label="Midtown Condo #4B">
+                    <button class="map-pin map-pin-midtown" type="button" aria-label="Midtown Condo #4B" data-property="midtown">
                       <span class="map-pin-dot board-stage-precon"></span>
                     </button>
-                    <button class="map-pin map-pin-decatur" type="button" aria-label="842 Decatur St">
+                    <button class="map-pin map-pin-decatur" type="button" aria-label="842 Decatur St" data-property="decatur">
                       <span class="map-pin-dot board-stage-precon"></span>
                     </button>
-                    <button class="map-pin map-pin-oak" type="button" aria-label="1679 Oak Ln">
+                    <button class="map-pin map-pin-oak" type="button" aria-label="1679 Oak Ln" data-property="oak">
                       <span class="map-pin-dot board-stage-active"></span>
                     </button>
-                    <button class="map-pin map-pin-druid" type="button" aria-label="North Druid Hills SFR">
+                    <button class="map-pin map-pin-druid" type="button" aria-label="North Druid Hills SFR" data-property="druid">
                       <span class="map-pin-dot board-stage-active"></span>
                     </button>
                   </div>

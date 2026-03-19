@@ -44,7 +44,7 @@ revealItems.forEach((item) => revealObserver.observe(item));
 portfolioSnapshots.forEach((snapshot) => {
   const tabs = snapshot.querySelectorAll("[data-portfolio-view-tab]");
   const views = snapshot.querySelectorAll("[data-portfolio-view]");
-  const boardColumns = snapshot.querySelectorAll("[data-board-column]");
+  const boardColumns = [...snapshot.querySelectorAll("[data-board-column]")];
 
   if (!tabs.length || !views.length) {
     return;
@@ -74,39 +74,287 @@ portfolioSnapshots.forEach((snapshot) => {
     return;
   }
 
-  const updateBoardColumns = () => {
-    boardColumns.forEach((column) => {
-      const lane = column.querySelector("[data-board-lane]");
-      const countNode = column.querySelector("[data-board-count]");
-      const emptyNode = lane?.querySelector("[data-board-empty]");
-      const cards = lane?.querySelectorAll("[data-board-card]") ?? [];
+  const stageConfig = {
+    underwriting: {
+      label: "Leads / Underwriting",
+      defaultStatus: "Under Review",
+      statuses: ["Under Review"],
+      bubbleClass: "bubble-underwriting",
+      dotClass: "board-stage-underwriting",
+    },
+    escrow: {
+      label: "Under Contract / Escrow",
+      defaultStatus: "In Escrow",
+      statuses: ["In Escrow"],
+      bubbleClass: "bubble-escrow",
+      dotClass: "board-stage-escrow",
+    },
+    precon: {
+      label: "Pre-Construction",
+      defaultStatus: "Design Intake",
+      statuses: ["Design Intake", "Bidding Active"],
+      bubbleClass: "bubble-precon",
+      dotClass: "board-stage-precon",
+    },
+    active: {
+      label: "Active Construction",
+      defaultStatus: "On Schedule",
+      statuses: ["On Schedule"],
+      bubbleClass: "bubble-active",
+      dotClass: "board-stage-active",
+    },
+    listed: {
+      label: "Listed / Sold",
+      defaultStatus: "Listed",
+      statuses: ["Listed", "Sold"],
+      bubbleClass: "bubble-listed",
+      dotClass: "board-stage-listed",
+    },
+  };
 
-      if (countNode) {
-        countNode.textContent = String(cards.length);
-      }
+  const stageOrder = Object.keys(stageConfig);
+  const allStatuses = stageOrder.flatMap((stageKey) => stageConfig[stageKey].statuses);
+  const bubbleClasses = stageOrder.map((stageKey) => stageConfig[stageKey].bubbleClass);
+  const dotClasses = stageOrder.map((stageKey) => stageConfig[stageKey].dotClass);
+  const statusToStage = {};
+  const statusClassMap = {
+    "Under Review": "portfolio-status-neutral",
+    "In Escrow": "portfolio-status-escrow",
+    "Design Intake": "portfolio-status-neutral",
+    "Bidding Active": "portfolio-status-warning",
+    "On Schedule": "portfolio-status-success",
+    Listed: "portfolio-status-listed",
+    Sold: "portfolio-status-listed",
+  };
 
-      if (emptyNode) {
-        emptyNode.hidden = cards.length > 0;
+  stageOrder.forEach((stageKey) => {
+    stageConfig[stageKey].statuses.forEach((status) => {
+      statusToStage[status] = stageKey;
+    });
+  });
+
+  const listTable = snapshot.querySelector(".portfolio-list-table");
+  const listRows = [...snapshot.querySelectorAll(".portfolio-list-row[data-property]")];
+  const cards = [...snapshot.querySelectorAll("[data-board-card][data-property]")];
+  const lanes = [...snapshot.querySelectorAll("[data-board-lane]")];
+  const lanesByStage = new Map(
+    boardColumns.map((column) => [column.dataset.boardTheme, column.querySelector("[data-board-lane]")]),
+  );
+  const progressBar = snapshot.querySelector(".snapshot-progress");
+  const progressSegments = new Map(
+    [...snapshot.querySelectorAll("[data-progress-stage]")].map((segment) => [
+      segment.dataset.progressStage,
+      segment,
+    ]),
+  );
+  const mapPins = new Map(
+    [...snapshot.querySelectorAll(".map-pin[data-property]")].map((pin) => [
+      pin.dataset.property,
+      pin.querySelector(".map-pin-dot"),
+    ]),
+  );
+
+  const rowMap = new Map();
+  const cardMap = new Map();
+  const propertyState = new Map();
+
+  const updateStatusCell = (statusCell, select, status) => {
+    statusCell.className = "portfolio-status-dot portfolio-status-control";
+    statusCell.classList.add(statusClassMap[status] ?? "portfolio-status-neutral");
+    select.value = status;
+  };
+
+  listRows.forEach((row, index) => {
+    const propertyId = row.dataset.property;
+    const stageCell = row.querySelector("[data-stage-cell]");
+    const statusCell = row.querySelector("[data-status-cell]");
+    const initialStatus = statusCell?.textContent.trim() || "";
+    const stageKey =
+      statusToStage[initialStatus] ||
+      stageOrder.find((candidate) => stageConfig[candidate].label === stageCell?.textContent.trim()) ||
+      "underwriting";
+
+    const statusSelect = document.createElement("select");
+    statusSelect.className = "portfolio-status-select";
+    statusSelect.setAttribute("aria-label", `${row.querySelector("strong")?.textContent ?? "Property"} status`);
+
+    allStatuses.forEach((status) => {
+      const option = document.createElement("option");
+      option.value = status;
+      option.textContent = status;
+      statusSelect.appendChild(option);
+    });
+
+    statusCell.textContent = "";
+    statusCell.appendChild(statusSelect);
+    updateStatusCell(statusCell, statusSelect, initialStatus || stageConfig[stageKey].defaultStatus);
+
+    rowMap.set(propertyId, {
+      row,
+      stageCell,
+      statusCell,
+      statusSelect,
+      baseOrder: index,
+    });
+
+    propertyState.set(propertyId, {
+      stageKey,
+      status: statusSelect.value,
+      order: index,
+    });
+  });
+
+  cards.forEach((card) => {
+    cardMap.set(card.dataset.property, {
+      card,
+      statusNode: card.querySelector("[data-card-status]"),
+    });
+  });
+
+  const sortListRows = () => {
+    const orderedIds = [...propertyState.entries()]
+      .sort(([, left], [, right]) => {
+        const stageDifference =
+          stageOrder.indexOf(left.stageKey) - stageOrder.indexOf(right.stageKey);
+
+        if (stageDifference !== 0) {
+          return stageDifference;
+        }
+
+        return left.order - right.order;
+      })
+      .map(([propertyId]) => propertyId);
+
+    orderedIds.forEach((propertyId) => {
+      const row = rowMap.get(propertyId)?.row;
+
+      if (row) {
+        listTable?.appendChild(row);
       }
     });
   };
 
-  const setCardTheme = (card, lane) => {
-    const theme = lane.closest("[data-board-column]")?.dataset.boardTheme;
-    const bubbleClasses = [
-      "bubble-underwriting",
-      "bubble-escrow",
-      "bubble-precon",
-      "bubble-active",
-      "bubble-listed",
-    ];
+  const placeCardInLane = (card, lane, clientY = null) => {
+    const emptyNode = lane.querySelector("[data-board-empty]");
 
-    card.classList.remove(...bubbleClasses);
+    if (typeof clientY === "number") {
+      const candidates = [...lane.querySelectorAll("[data-board-card]:not(.is-dragging)")];
+      const afterElement = candidates.reduce(
+        (closest, candidate) => {
+          const box = candidate.getBoundingClientRect();
+          const offset = clientY - box.top - box.height / 2;
 
-    if (theme) {
-      card.classList.add(`bubble-${theme}`);
+          if (offset < 0 && offset > closest.offset) {
+            return { offset, element: candidate };
+          }
+
+          return closest;
+        },
+        { offset: Number.NEGATIVE_INFINITY, element: null },
+      ).element;
+
+      if (afterElement) {
+        lane.insertBefore(card, afterElement);
+        return;
+      }
     }
+
+    if (emptyNode) {
+      lane.insertBefore(card, emptyNode);
+      return;
+    }
+
+    lane.appendChild(card);
   };
+
+  const updateMapPin = (propertyId, stageKey) => {
+    const pinDot = mapPins.get(propertyId);
+
+    if (!pinDot) {
+      return;
+    }
+
+    pinDot.classList.remove(...dotClasses);
+    pinDot.classList.add(stageConfig[stageKey].dotClass);
+  };
+
+  const updateBoardColumns = () => {
+    const counts = {};
+
+    boardColumns.forEach((column) => {
+      const stageKey = column.dataset.boardTheme;
+      const lane = column.querySelector("[data-board-lane]");
+      const countNode = column.querySelector("[data-board-count]");
+      const emptyNode = lane?.querySelector("[data-board-empty]");
+      const cardCount = lane?.querySelectorAll("[data-board-card]").length ?? 0;
+
+      counts[stageKey] = cardCount;
+
+      if (countNode) {
+        countNode.textContent = String(cardCount);
+      }
+
+      if (emptyNode) {
+        emptyNode.hidden = cardCount > 0;
+      }
+    });
+
+    if (progressBar) {
+      progressBar.style.gridTemplateColumns = stageOrder
+        .map((stageKey) => `${Math.max(counts[stageKey] ?? 0, 0.35)}fr`)
+        .join(" ");
+    }
+
+    progressSegments.forEach((segment, stageKey) => {
+      segment.style.opacity = (counts[stageKey] ?? 0) > 0 ? "1" : "0.28";
+    });
+  };
+
+  const applyPropertyState = (propertyId, stageKey, nextStatus = null, clientY = null) => {
+    const state = propertyState.get(propertyId);
+    const rowEntry = rowMap.get(propertyId);
+    const cardEntry = cardMap.get(propertyId);
+    const lane = lanesByStage.get(stageKey);
+
+    if (!state || !rowEntry || !cardEntry || !lane) {
+      return;
+    }
+
+    const resolvedStatus =
+      nextStatus && statusToStage[nextStatus] === stageKey
+        ? nextStatus
+        : statusToStage[state.status] === stageKey
+          ? state.status
+          : stageConfig[stageKey].defaultStatus;
+
+    state.stageKey = stageKey;
+    state.status = resolvedStatus;
+
+    rowEntry.stageCell.textContent = stageConfig[stageKey].label;
+    updateStatusCell(rowEntry.statusCell, rowEntry.statusSelect, resolvedStatus);
+
+    placeCardInLane(cardEntry.card, lane, clientY);
+    cardEntry.card.classList.remove(...bubbleClasses);
+    cardEntry.card.classList.add(stageConfig[stageKey].bubbleClass);
+
+    if (cardEntry.statusNode) {
+      cardEntry.statusNode.textContent = resolvedStatus;
+    }
+
+    updateMapPin(propertyId, stageKey);
+    sortListRows();
+    updateBoardColumns();
+  };
+
+  rowMap.forEach((entry, propertyId) => {
+    entry.statusSelect.addEventListener("change", () => {
+      applyPropertyState(
+        propertyId,
+        statusToStage[entry.statusSelect.value] ?? propertyState.get(propertyId)?.stageKey ?? "underwriting",
+        entry.statusSelect.value,
+      );
+    });
+  });
 
   let selectedCard = null;
 
@@ -126,58 +374,29 @@ portfolioSnapshots.forEach((snapshot) => {
     lanes.forEach((lane) => lane.classList.add("is-over"));
   };
 
-  const moveCardToLane = (card, lane, clientY = null) => {
-    const afterElement =
-      typeof clientY === "number" ? getDragAfterElement(lane, clientY) : null;
-    const emptyNode = lane.querySelector("[data-board-empty]");
-
-    if (afterElement) {
-      lane.insertBefore(card, afterElement);
-    } else if (emptyNode) {
-      lane.insertBefore(card, emptyNode);
-    } else {
-      lane.appendChild(card);
-    }
-
-    setCardTheme(card, lane);
-    updateBoardColumns();
-  };
-
-  const getDragAfterElement = (lane, clientY) => {
-    const candidates = [...lane.querySelectorAll("[data-board-card]:not(.is-dragging)")];
-
-    return candidates.reduce(
-      (closest, card) => {
-        const box = card.getBoundingClientRect();
-        const offset = clientY - box.top - box.height / 2;
-
-        if (offset < 0 && offset > closest.offset) {
-          return { offset, element: card };
-        }
-
-        return closest;
-      },
-      { offset: Number.NEGATIVE_INFINITY, element: null },
-    ).element;
-  };
-
-  const cards = snapshot.querySelectorAll("[data-board-card]");
-  const lanes = snapshot.querySelectorAll("[data-board-lane]");
-
   cards.forEach((card) => {
     card.addEventListener("dragstart", (event) => {
       clearSelectedCard();
       card.classList.add("is-dragging");
+
       if (event.dataTransfer) {
         event.dataTransfer.effectAllowed = "move";
-        event.dataTransfer.setData("text/plain", card.querySelector("h3")?.textContent ?? "");
+        event.dataTransfer.setData("text/plain", card.dataset.property ?? "");
       }
     });
 
     card.addEventListener("dragend", () => {
+      const lane = card.closest("[data-board-lane]");
+      const stageKey = lane?.closest("[data-board-column]")?.dataset.boardTheme;
+
       card.classList.remove("is-dragging");
-      lanes.forEach((lane) => lane.classList.remove("is-over"));
-      updateBoardColumns();
+      lanes.forEach((boardLane) => boardLane.classList.remove("is-over"));
+
+      if (stageKey && card.dataset.property) {
+        applyPropertyState(card.dataset.property, stageKey);
+      } else {
+        updateBoardColumns();
+      }
     });
 
     card.addEventListener("click", (event) => {
@@ -206,7 +425,8 @@ portfolioSnapshots.forEach((snapshot) => {
         return;
       }
 
-      moveCardToLane(activeCard, lane, event.clientY);
+      placeCardInLane(activeCard, lane, event.clientY);
+      lane.classList.add("is-over");
     });
 
     lane.addEventListener("dragleave", (event) => {
@@ -220,20 +440,21 @@ portfolioSnapshots.forEach((snapshot) => {
     lane.addEventListener("drop", (event) => {
       event.preventDefault();
       lane.classList.remove("is-over");
-      updateBoardColumns();
     });
 
     lane.addEventListener("click", (event) => {
-      if (!selectedCard) {
+      if (!selectedCard || event.target.closest("[data-board-card]")) {
         return;
       }
 
-      if (event.target.closest("[data-board-card]")) {
-        return;
-      }
+      const propertyId = selectedCard.dataset.property;
+      const stageKey = lane.closest("[data-board-column]")?.dataset.boardTheme;
 
-      moveCardToLane(selectedCard, lane);
       clearSelectedCard();
+
+      if (propertyId && stageKey) {
+        applyPropertyState(propertyId, stageKey);
+      }
     });
   });
 
@@ -243,5 +464,7 @@ portfolioSnapshots.forEach((snapshot) => {
     }
   });
 
-  updateBoardColumns();
+  propertyState.forEach((entry, propertyId) => {
+    applyPropertyState(propertyId, entry.stageKey, entry.status);
+  });
 });
