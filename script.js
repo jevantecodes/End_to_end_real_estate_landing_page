@@ -514,11 +514,12 @@ const syncHeroVideoToScroll = () => {
     }
 
     const sectionRect = heroSection.getBoundingClientRect();
-    const scrollSpan = Math.max(sectionRect.height - window.innerHeight * 0.3, 1);
-    const progress = Math.min(Math.max((0 - sectionRect.top) / scrollSpan, 0), 1);
+    const scrollSpan = Math.max(heroSection.offsetHeight - window.innerHeight, 1);
+    const progress = Math.min(Math.max((-sectionRect.top) / scrollSpan, 0), 1);
+    const targetTime = progress * scrubDuration;
 
-    heroVideo.currentTime = progress * scrubDuration;
-    updateHeroCaption(heroVideo.currentTime);
+    heroVideo.currentTime = targetTime;
+    updateHeroCaption(targetTime);
   };
 
   const queueProgressUpdate = () => {

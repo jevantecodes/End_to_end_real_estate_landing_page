@@ -210,11 +210,10 @@ select {
 .hero-intro {
   grid-template-columns: 1fr;
   gap: 0;
-  min-height: auto;
-  padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 4vw, 3rem);
+  min-height: 240vh;
+  padding: clamp(0.9rem, 1.8vw, 1.35rem);
   border: 1px solid rgba(13, 31, 51, 0.08);
   border-radius: 42px;
-  overflow: hidden;
   align-items: start;
   background: linear-gradient(180deg, rgba(251, 247, 240, 0.88), rgba(244, 236, 226, 0.92));
 }
@@ -228,8 +227,11 @@ select {
 
 .hero-video-shell {
   position: relative;
+  position: sticky;
+  top: clamp(0.7rem, 1.5vw, 1.15rem);
   width: 100%;
   aspect-ratio: 16 / 9;
+  max-height: calc(100svh - 2rem);
   border-radius: 34px;
   overflow: hidden;
   background: #111826;
@@ -3178,7 +3180,8 @@ select {
   }
 
   .hero-intro {
-    padding: 1.4rem 1.4rem 2.8rem;
+    min-height: 210vh;
+    padding: 0.85rem;
   }
 
   .portfolio-overview-layout {
@@ -3402,11 +3405,13 @@ select {
   }
 
   .hero-intro {
-    padding: 1rem 0.9rem 2.4rem;
+    min-height: 185vh;
+    padding: 0.65rem;
     border-radius: 30px;
   }
 
   .hero-video-shell {
+    top: 0.45rem;
     border-radius: 22px;
   }
 
