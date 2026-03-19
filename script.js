@@ -108,6 +108,41 @@ portfolioSnapshots.forEach((snapshot) => {
     }
   };
 
+  let selectedCard = null;
+
+  const clearSelectedCard = () => {
+    if (selectedCard) {
+      selectedCard.classList.remove("is-picked");
+    }
+
+    selectedCard = null;
+    lanes.forEach((lane) => lane.classList.remove("is-over"));
+  };
+
+  const setSelectedCard = (card) => {
+    clearSelectedCard();
+    selectedCard = card;
+    selectedCard.classList.add("is-picked");
+    lanes.forEach((lane) => lane.classList.add("is-over"));
+  };
+
+  const moveCardToLane = (card, lane, clientY = null) => {
+    const afterElement =
+      typeof clientY === "number" ? getDragAfterElement(lane, clientY) : null;
+    const emptyNode = lane.querySelector("[data-board-empty]");
+
+    if (afterElement) {
+      lane.insertBefore(card, afterElement);
+    } else if (emptyNode) {
+      lane.insertBefore(card, emptyNode);
+    } else {
+      lane.appendChild(card);
+    }
+
+    setCardTheme(card, lane);
+    updateBoardColumns();
+  };
+
   const getDragAfterElement = (lane, clientY) => {
     const candidates = [...lane.querySelectorAll("[data-board-card]:not(.is-dragging)")];
 
@@ -131,6 +166,7 @@ portfolioSnapshots.forEach((snapshot) => {
 
   cards.forEach((card) => {
     card.addEventListener("dragstart", (event) => {
+      clearSelectedCard();
       card.classList.add("is-dragging");
       if (event.dataTransfer) {
         event.dataTransfer.effectAllowed = "move";
@@ -142,6 +178,17 @@ portfolioSnapshots.forEach((snapshot) => {
       card.classList.remove("is-dragging");
       lanes.forEach((lane) => lane.classList.remove("is-over"));
       updateBoardColumns();
+    });
+
+    card.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      if (selectedCard === card) {
+        clearSelectedCard();
+        return;
+      }
+
+      setSelectedCard(card);
     });
   });
 
@@ -159,18 +206,7 @@ portfolioSnapshots.forEach((snapshot) => {
         return;
       }
 
-      const afterElement = getDragAfterElement(lane, event.clientY);
-      const emptyNode = lane.querySelector("[data-board-empty]");
-
-      if (afterElement) {
-        lane.insertBefore(activeCard, afterElement);
-      } else if (emptyNode) {
-        lane.insertBefore(activeCard, emptyNode);
-      } else {
-        lane.appendChild(activeCard);
-      }
-
-      setCardTheme(activeCard, lane);
+      moveCardToLane(activeCard, lane, event.clientY);
     });
 
     lane.addEventListener("dragleave", (event) => {
@@ -186,6 +222,25 @@ portfolioSnapshots.forEach((snapshot) => {
       lane.classList.remove("is-over");
       updateBoardColumns();
     });
+
+    lane.addEventListener("click", (event) => {
+      if (!selectedCard) {
+        return;
+      }
+
+      if (event.target.closest("[data-board-card]")) {
+        return;
+      }
+
+      moveCardToLane(selectedCard, lane);
+      clearSelectedCard();
+    });
+  });
+
+  snapshot.addEventListener("click", (event) => {
+    if (!event.target.closest("[data-board-card]") && !event.target.closest("[data-board-lane]")) {
+      clearSelectedCard();
+    }
   });
 
   updateBoardColumns();
