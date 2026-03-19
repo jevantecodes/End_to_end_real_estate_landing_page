@@ -480,7 +480,7 @@ const heroCaption = document.querySelector(".hero-video-caption");
 const heroCaptionText = document.querySelector("[data-hero-caption-text]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let queueHeroVideoProgressUpdate = () => {};
-const heroCaptionMessage = "Every property deal starts with scattered information.";
+const heroCaptionMessage = "Every property begins with scattered data.";
 
 const updateHeroCaption = (currentTime = 0) => {
   if (!heroCaption || !heroCaptionText) {
