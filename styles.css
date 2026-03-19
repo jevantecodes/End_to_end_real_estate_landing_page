@@ -1989,17 +1989,84 @@ select {
   margin-top: 2.5rem;
 }
 
-.problem-journey {
+.problem-system {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  align-items: center;
+  align-items: stretch;
   margin-top: 2.4rem;
 }
 
-.problem-stage {
+.problem-system::before {
+  content: "";
+  position: absolute;
+  left: 17%;
+  right: 17%;
+  top: 8.1rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(209, 104, 49, 0.08),
+    rgba(209, 104, 49, 0.4) 24%,
+    rgba(13, 31, 51, 0.2) 50%,
+    rgba(85, 96, 217, 0.34) 76%,
+    rgba(85, 96, 217, 0.08)
+  );
+  pointer-events: none;
+}
+
+.problem-node {
+  position: relative;
   display: grid;
-  gap: 0.75rem;
+  gap: 0.9rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 16px 38px rgba(13, 31, 51, 0.08);
+}
+
+.problem-node::after {
+  content: "";
+  position: absolute;
+  top: 7.55rem;
+  right: -0.58rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 999px;
+  background: white;
+  border: 1px solid rgba(13, 31, 51, 0.08);
+  box-shadow: 0 10px 22px rgba(13, 31, 51, 0.08);
+}
+
+.problem-node:last-child::after {
+  display: none;
+}
+
+.problem-node-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.problem-node-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.42rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(13, 31, 51, 0.06);
+  color: var(--ink);
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.problem-node-chip-solution {
+  background: rgba(85, 96, 217, 0.1);
+  color: #5560d9;
 }
 
 .problem-stage-label {
@@ -2011,29 +2078,6 @@ select {
   text-transform: uppercase;
 }
 
-.problem-image,
-.problem-flow-arrow {
-  border: 1px solid rgba(255, 255, 255, 0.78);
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 16px 38px rgba(13, 31, 51, 0.08);
-}
-
-.problem-image {
-  min-height: 11.5rem;
-  padding: 1rem;
-}
-
-.problem-flow-arrow {
-  display: grid;
-  place-items: center;
-  min-width: 3.2rem;
-  min-height: 3.2rem;
-  color: var(--accent-deep);
-  font-size: 1.35rem;
-  font-weight: 800;
-}
-
 .problem-stage-copy {
   margin: 0;
   color: var(--ink-soft);
@@ -2041,36 +2085,40 @@ select {
   font-size: 0.95rem;
 }
 
-.problem-image-scattered {
+.problem-input-cloud {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
   background:
     linear-gradient(180deg, rgba(255, 248, 241, 0.96), rgba(243, 232, 217, 0.92));
+  padding: 0.9rem;
+  border-radius: 22px;
 }
 
 .problem-card-chip {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 3.5rem;
-  padding: 0.8rem;
+  justify-content: flex-start;
+  min-height: 3.35rem;
+  padding: 0.85rem 0.95rem;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.88);
   color: var(--ink-strong);
   font-size: 0.88rem;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
 }
 
-.problem-image-chaos {
+.problem-gap-card {
   display: grid;
   gap: 0.75rem;
   background:
     linear-gradient(180deg, rgba(255, 247, 236, 0.96), rgba(247, 235, 223, 0.92));
+  padding: 0.9rem;
+  border-radius: 22px;
 }
 
-.problem-list-row {
+.problem-gap-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 0.4rem 0.75rem;
@@ -2080,44 +2128,73 @@ select {
   background: rgba(255, 255, 255, 0.86);
 }
 
-.problem-list-row span {
+.problem-gap-row span {
   color: var(--ink-soft);
   font-size: 0.9rem;
   font-weight: 700;
 }
 
-.problem-list-row strong {
+.problem-gap-row strong {
   color: #b44a1b;
   font-size: 0.92rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
-.problem-image-solution {
+.problem-gap-note {
+  padding: 0.95rem 1rem;
+  border-radius: 16px;
+  background: rgba(13, 31, 51, 0.06);
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.problem-record-card {
   display: grid;
   gap: 0.85rem;
   background:
     linear-gradient(180deg, rgba(255, 248, 241, 0.96), rgba(240, 234, 250, 0.92));
+  padding: 0.9rem;
+  border-radius: 22px;
 }
 
-.problem-solution-header {
-  padding: 0.9rem 1rem;
+.problem-record-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.95rem 1rem;
   border-radius: 16px;
   background: linear-gradient(135deg, rgba(203, 47, 0, 0.92), rgba(255, 163, 32, 0.9));
+}
+
+.problem-record-header strong,
+.problem-record-header span {
   color: white;
+}
+
+.problem-record-header strong {
   font-size: 0.92rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.problem-solution-grid {
+.problem-record-header span {
+  font-size: 0.74rem;
+  font-weight: 700;
+  opacity: 0.92;
+}
+
+.problem-record-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.7rem;
 }
 
-.problem-solution-grid span {
+.problem-record-grid span {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2129,6 +2206,21 @@ select {
   font-size: 0.86rem;
   font-weight: 700;
   text-align: center;
+}
+
+.problem-record-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.problem-record-meta span {
+  padding: 0.55rem 0.72rem;
+  border-radius: 999px;
+  background: rgba(13, 31, 51, 0.06);
+  color: var(--ink);
+  font-size: 0.76rem;
+  font-weight: 700;
 }
 
 .problem-grid,
@@ -2825,8 +2917,13 @@ select {
     grid-template-columns: 1fr;
   }
 
-  .problem-journey {
+  .problem-system {
     grid-template-columns: 1fr;
+  }
+
+  .problem-system::before,
+  .problem-node::after {
+    display: none;
   }
 
   .platform-flow {
@@ -2849,10 +2946,6 @@ select {
   }
 
   .ai-journey-arrow {
-    display: none;
-  }
-
-  .problem-flow-arrow {
     display: none;
   }
 
@@ -3219,6 +3312,27 @@ select {
 
   .preview-header h2 {
     font-size: 1.12rem;
+  }
+
+  .problem-node {
+    padding: 0.9rem;
+    border-radius: 24px;
+  }
+
+  .problem-input-cloud,
+  .problem-record-card,
+  .problem-gap-card {
+    padding: 0.75rem;
+    border-radius: 18px;
+  }
+
+  .problem-input-cloud,
+  .problem-record-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .problem-record-header {
+    display: grid;
   }
 
   .status-pill {

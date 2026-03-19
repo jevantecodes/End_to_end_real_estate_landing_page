@@ -97,10 +97,13 @@
           </p>
         </div>
 
-        <div class="problem-journey reveal">
-          <div class="problem-stage">
-            <p class="problem-stage-label">Scattered inputs</p>
-            <div class="problem-image problem-image-scattered" aria-hidden="true">
+        <div class="problem-system reveal">
+          <article class="problem-node problem-node-inputs">
+            <div class="problem-node-head">
+              <p class="problem-stage-label">Scattered inputs</p>
+              <span class="problem-node-chip">8 sources</span>
+            </div>
+            <div class="problem-input-cloud" aria-hidden="true">
               <div class="problem-card-chip">Inspection PDF</div>
               <div class="problem-card-chip">Room Photos</div>
               <div class="problem-card-chip">Appraisal</div>
@@ -110,45 +113,61 @@
               <div class="problem-card-chip">Material Pricing</div>
               <div class="problem-card-chip">Timeline Updates</div>
             </div>
-            <p class="problem-stage-copy">The property story starts in disconnected files, messages, and snapshots.</p>
-          </div>
+            <p class="problem-stage-copy">
+              The property story starts in disconnected files, messages, and snapshots.
+            </p>
+          </article>
 
-          <div class="problem-flow-arrow" aria-hidden="true">→</div>
-
-          <div class="problem-stage">
-            <p class="problem-stage-label">Manual reconstruction</p>
-            <div class="problem-image problem-image-chaos" aria-hidden="true">
-              <div class="problem-list-row">
+          <article class="problem-node problem-node-gap">
+            <div class="problem-node-head">
+              <p class="problem-stage-label">Rebuilding the property story</p>
+              <span class="problem-node-chip">Manual review</span>
+            </div>
+            <div class="problem-gap-card" aria-hidden="true">
+              <div class="problem-gap-row">
                 <span>Measurements</span>
-                <strong>missing</strong>
+                <strong>Missing</strong>
               </div>
-              <div class="problem-list-row">
+              <div class="problem-gap-row">
                 <span>Room costs</span>
-                <strong>unclear</strong>
+                <strong>Unclear</strong>
               </div>
-              <div class="problem-list-row">
+              <div class="problem-gap-row">
                 <span>Contractor pricing</span>
-                <strong>split</strong>
+                <strong>Split</strong>
+              </div>
+              <div class="problem-gap-note">
+                Investors and GCs spend time rebuilding the same picture before they can act.
               </div>
             </div>
-            <p class="problem-stage-copy">Investors and GCs spend time rebuilding the same picture before they can act.</p>
-          </div>
+          </article>
 
-          <div class="problem-flow-arrow" aria-hidden="true">→</div>
-
-          <div class="problem-stage">
-            <p class="problem-stage-label">PropertyIntellidex</p>
-            <div class="problem-image problem-image-solution" aria-hidden="true">
-              <div class="problem-solution-header">Unified property record</div>
-              <div class="problem-solution-grid">
+          <article class="problem-node problem-node-solution">
+            <div class="problem-node-head">
+              <p class="problem-stage-label">PropertyIntellidex</p>
+              <span class="problem-node-chip problem-node-chip-solution">Organized record</span>
+            </div>
+            <div class="problem-record-card" aria-hidden="true">
+              <div class="problem-record-header">
+                <strong>Unified property record</strong>
+                <span>One source of truth</span>
+              </div>
+              <div class="problem-record-grid">
                 <span>Measurements</span>
                 <span>Room costs</span>
                 <span>Contractor pricing</span>
                 <span>Progress tracking</span>
               </div>
+              <div class="problem-record-meta">
+                <span>AI cost analysis</span>
+                <span>Bid comparison</span>
+                <span>Milestone visibility</span>
+              </div>
             </div>
-            <p class="problem-stage-copy">One digital record makes analysis, comparison, and transaction visibility much easier.</p>
-          </div>
+            <p class="problem-stage-copy">
+              One digital record makes analysis, comparison, and transaction visibility much easier.
+            </p>
+          </article>
         </div>
 
         <div class="problem-layout">
